@@ -17,3 +17,26 @@ git init
 ls
 ls -a
 exit
+cd ~/.emacs.d/
+git add .
+git commit -m "first commit"
+git push
+exit
+mv .agenda.org .org/agenda.org
+mv .agenda.org .org/
+ls
+ls -a
+mkdir .org/
+ls -a
+mv .agenda.org .org/
+ls
+ls -a
+exit
+ls
+cd ..
+cd ~/.org/
+mv .agenda.org schedule.org
+touch research.org
+exit
+open journal.pdf 
+exit

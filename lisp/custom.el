@@ -5,8 +5,23 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    '("e3dedbd038f79ecaf01e0dbb947bb6eeec8374f322e7b4a2a224c9d9e1490c52" default))
+ '(org-latex-default-packages-alist
+   '(("AUTO" "inputenc" t
+      ("pdflatex"))
+     ("T1" "fontenc" t
+      ("pdflatex"))
+     ("" "graphicx" t nil)
+     ("" "longtable" nil nil)
+     ("" "wrapfig" nil nil)
+     ("" "rotating" nil nil)
+     ("normalem" "ulem" t nil)
+     ("" "amsmath" t nil)
+     ("" "amssymb" t nil)
+     ("" "capt-of" nil nil)
+     ("a4paper, total={6in, 8in}" "geometry" nil nil)
+     ("colorlinks=true, citecolor=red, linkcolor=cyan, urlcolor=blue" "hyperref" nil nil)))
  '(package-selected-packages
-   '(org-contrib org-plus-contrib doom-themes doom-modeline restart-emacs use-package evil wgrep timu-macos-theme embark-consult consult embark marginalia orderless vertico company)))
+   '(org-roam ox-hugo org-contrib org-plus-contrib doom-themes doom-modeline restart-emacs use-package evil wgrep timu-macos-theme embark-consult consult embark marginalia orderless vertico company)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

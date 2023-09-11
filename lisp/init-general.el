@@ -8,6 +8,8 @@
 (setq tab-always-indent 'complete)
 (setq ring-bell-function 'ignore)
 
+(add-hook 'before-save-hook 'time-stamp)
+
 (defun open-init-file ()
   (interactive)
   (find-file "~/.emacs.d/init.el"))
@@ -62,18 +64,22 @@
 
 (use-package consult
   :ensure t
-  :bind (("C-c s" . 'consult-ripgrep)
-	 ("C-c l" . 'consult-locate))
   :config (setq consult-locate-args "mdfind -name"))
 
 (use-package embark
   :ensure t
-  :init (use-package wgrep :ensure t)
-  :bind (("C-;" . 'embark-act)
+  :bind (("C-;" . embark-act)
+	 ("C-." . embark-dwim)
 	 :map minibuffer-local-map
-	 ("C-r" . 'embark-export-write))
+	 ("C-r" . embark-export-write))
+  :init
+  (setq prefix-help-command #'embark-prefix-help-command)
   :config
-  (setq prefix-help-command 'embark-prefix-help-command)
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none))))
   (defun embark-export-write()
     "Export the current vertico results to a writable buffer is possible.
 Supports exporting consult-grep to wgrep, file to wdeired, and consult-location to occur-edit"
@@ -87,14 +93,12 @@ Supports exporting consult-grep to wgrep, file to wdeired, and consult-location 
 		 (embark-export)))
 	('consult-location (let ((embark-after-export-hook #'occur-edit-mode))
 			     (embark-export)))
-	(x (user-error "embark category %S doesn't support writable export" x)))))
-  (eval-after-load 'consult
-    '(eval-after-load 'embark
-       '(add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))))
+	(x (user-error "embark category %S doesn't support writable export" x))))))
 
 (use-package embark-consult
   :ensure t
-  :after embark consult)
+  :after embark consult
+  :hook (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package savehist
   :ensure nil

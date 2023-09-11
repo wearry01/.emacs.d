@@ -18,6 +18,7 @@
   :ensure t
   :hook (after-init . doom-modeline-mode)
   :custom
+  (doom-modeline-icon t)
   (doom-modeline-unicode-fallback t)
   (doom-modeline-enable-word-count nil))
 
