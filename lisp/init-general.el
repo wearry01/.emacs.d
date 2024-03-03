@@ -42,7 +42,7 @@
 	      ("C-p" . 'company-select-previous))
   :init (global-company-mode)
   :config
-  (setq company-minimum-prefix-length 3)
+  (setq company-minimum-prefix-length 4)
   (setq company-idle-delay 0.1)
   (setq company-selection-wrap-around t))
 

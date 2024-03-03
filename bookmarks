@@ -13,9 +13,9 @@
  (rear-context-string . "\n\n* Blog Posts\n\n")
  (position . 127))
 ("org-capture-last-stored"
- (filename . "~/Documents/Zettelkasten/notes/notes_cryptoeprint:2023-1270.org")
+ (filename . "~/Documents/Zettelkasten/notes/bib-notes/notes_on_<On the Security of the \"Free-XOR\" Technique>_2012.org")
  (front-context-string)
- (rear-context-string . "2023-09-11 Mon>\n")
- (position . 280)
- (last-modified 25854 45911 162072 0))
+ (rear-context-string . "2024-02-25 Sun>\n")
+ (position . 227)
+ (last-modified 26075 14715 174380 0))
 )

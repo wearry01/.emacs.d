@@ -3,8 +3,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(LaTeX-enable-toolbar nil)
  '(custom-safe-themes
    '("e3dedbd038f79ecaf01e0dbb947bb6eeec8374f322e7b4a2a224c9d9e1490c52" default))
+ '(org-agenda-files
+   '("~/Library/Mobile Documents/com~apple~CloudDocs/Classes/2023-Fall/Algorithm Analysis and Complexity Theory/Homework/hw3.org"))
  '(org-latex-default-packages-alist
    '(("AUTO" "inputenc" t
       ("pdflatex"))
@@ -21,10 +24,12 @@
      ("a4paper, total={6in, 8in}" "geometry" nil nil)
      ("colorlinks=true, citecolor=red, linkcolor=cyan, urlcolor=blue" "hyperref" nil nil)))
  '(package-selected-packages
-   '(org-roam ox-hugo org-contrib org-plus-contrib doom-themes doom-modeline restart-emacs use-package evil wgrep timu-macos-theme embark-consult consult embark marginalia orderless vertico company)))
+   '(org-roam ox-hugo org-contrib org-plus-contrib doom-themes doom-modeline restart-emacs use-package evil wgrep timu-macos-theme embark-consult consult embark marginalia orderless vertico company))
+ '(preview-default-option-list
+   '("displaymath" "floats" "graphics" "textmath" "footnotes" "")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(preview-face ((t nil))))

@@ -4,6 +4,7 @@
 (defconst wearry/pdf-lib-paths (list "~/Documents/Zettelkasten/pdf-lib/"))
 (defconst wearry/org-roam-notes-path "~/Documents/Zettelkasten/notes")
 
+
 (use-package citar
   :ensure t
   :custom
@@ -16,10 +17,20 @@
   (require 'citar-org)
   (require 'citar-latex)
   (setq citar-file-extensions '("pdf" "org" "md"))
-  (add-to-list 'citar-file-open-functions
   ;; open PDF files by external PDF viewer
+  (add-to-list 'citar-file-open-functions
 	       '("pdf" . citar-file-open-external))
-  :bind (("C-c i" . citar-insert-citation)))
+  (setq citar-templates
+        '((main . "${author editor:35}     ${date year issued:4}     ${title:65}")
+          (suffix . "  ${tags keywords keywords:40}")
+          (preview . "${author editor} ${title}, \
+${journal publisher container-title collection-title booktitle} \
+${volume} (${year issued date}).\n")
+          (note . "Notes on ${author editor} ${title}")))
+  :bind (("C-c i" . citar-insert-citation)
+	 ("C-c o" . citar-open)
+	 ("C-c b" . citar-insert-bibtex)
+	 ("C-c a" . citar-add-file-to-library)))
 
 (use-package citar-embark
   :ensure t
@@ -29,8 +40,7 @@
 
 (use-package org
   :ensure org-contrib
-  :bind (("C-c a" . org-agenda)
-	 ("C-c l" . org-store-link)
+  :bind (("C-c l" . org-store-link)
 	 ("C-c c" . org-capture))
   :config
   (require 'org-checklist)
@@ -61,17 +71,24 @@
   :init (setq org-roam-v2-ack t) ;; Acknowledge V2 upgrade
   :custom (org-roam-directory wearry/org-roam-notes-path)
   :config
-  (setq org-roam-completion-everywhere t)
   (setq org-roam-capture-templates
 	'(("d" "default" plain "%?"
 	   :if-new (file+head "${slug}.org"
-			      "#+title: ${title}\n#+date: %u\n\n")
+			      "#+title: ${title}\n#+created: %U\n#+last-modified: %t\n\n")
 	   :immediate-finish t)
 	  ("n" "bibliography notes" plain "%?"
-	   :if-new (file+head "bib-notes/notes_${citar-citekey}.org"
-			      "#+title: Notes on ${note-title}.\n#+created: %U\n#+last-modified: %t\n\n")
+	   :if-new (file+head "bib-notes/notes_on_<${citar-title}>_${citar-date}.org"
+			      "#+title: Notes on <${citar-title}>\n#+created: %U\n#+last-modified: %t\n\n")
 	   :unnarrowed t))
 	time-stamp-start "#\\+last-modified:[ \t]*[<\"]")
+  (add-to-list 'display-buffer-alist
+               '("\\*org-roam\\*"
+		 (display-buffer-in-side-window)
+                 (dedicated . t)
+		 (side . right)
+		 (slot . 0)
+		 (window-width . 0.25)
+		 (window-parameters . (no-delete-other-windows . t))))
   :bind
   (("C-c n f" . org-roam-node-find)
    ("C-c n r" . org-roam-node-random)
@@ -100,7 +117,7 @@
   :after (citar org-roam)
   :config
   (setq citar-org-roam-capture-template-key "n")
-  (setq citar-org-roam-note-title-template "${title:55} - [${author:25}]")
+  (setq citar-org-roam-note-title-template "${title}")
   (citar-org-roam-mode))
 
 ;; Configure Hugo Post for Writing Blogs

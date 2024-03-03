@@ -7,6 +7,8 @@
 (require 'init-general)
 (require 'init-evil)
 (require 'init-org)
+(require 'init-tex)
+(require 'init-ocaml)
 
 ;; Custom Configurations
 
