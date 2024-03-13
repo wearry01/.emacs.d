@@ -6,7 +6,7 @@
   (setq evil-disable-insert-state-bindings t)
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
-  (setq evil-undo-system 'undo-tree)
+  (setq evil-undo-system 'undo-redo)
   :hook (after-init . evil-mode)
   :bind
   (:map evil-normal-state-map
@@ -29,14 +29,6 @@
 	("SPC l" . 'evil-window-right)
 	("SPC SPC" . 'execute-extended-command)))
 
-(use-package undo-tree
-  :ensure t
-  :diminish
-  :hook
-  (evil-mode . global-undo-tree-mode)
-  :init
-  (setq undo-tree-auto-save-history nil))
-
 (use-package evil-surround
   :ensure t
   :init
@@ -50,7 +42,7 @@
   (define-key evil-visual-state-map
 	      (kbd "C-'") 'evilnc-comment-or-uncomment-lines))
 
-;; Unbind `Tab'
+;; Unbind whitespaces
 
 (with-eval-after-load 'evil-maps
   (define-key evil-motion-state-map (kbd "TAB") nil)
