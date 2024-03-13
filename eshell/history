@@ -1,22 +1,3 @@
-ls
-cd ..
-git status
-vim gitignore
-git add .
-git commit -m 
-git commit -m "configured org-roam and citar package"
-git push
-git --help
-git status
-exit
-pdflatex
-echo $PATH
-echo $PATH
-sh
-latex 
-exit
-ls
-uname -a
 rst2latex 
 pcomplete/pdflatex 
 echo $PATH
@@ -126,3 +107,22 @@ git push
 git add .
 git commit -m "some statements are refined"
 git push
+make 
+ls
+./f test.f
+cat test.f
+true;ls
+exit
+make test
+exit
+make test
+make 
+./f test.f
+ls
+exit
+make test
+make test
+./f test.f
+make test
+make test
+ make test

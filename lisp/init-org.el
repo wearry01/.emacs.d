@@ -44,9 +44,10 @@ ${volume} (${year issued date}).\n")
 	 ("C-c c" . org-capture))
   :config
   (require 'org-checklist)
-  (setq org-log-done t)
-  (setq org-log-into-drawer t)
-  (setq org-startup-indented t)
+  (setq org-log-done t
+	org-log-into-drawer t
+	org-startup-indented t
+	org-highlight-latex-and-related '(native script entities))
   (with-eval-after-load 'ox-latex
     (add-to-list 'org-latex-classes
                  '("ctex" "\\documentclass[11pt]{ctexart}"
