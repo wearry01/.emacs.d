@@ -1,0 +1,128 @@
+vim .zshenv 
+source .bashrc
+ls
+ls -a
+cd .config/ls
+cd .config/
+ls
+cd fish/
+ls
+vim config.fish 
+exit
+guname 
+uname 
+uname -a
+exit
+exit
+exit
+exit
+git add .
+git commit -m "pset-sol7"
+exit
+git add .
+git commit -m "pset-sol7"
+git push
+exit
+luatex poster.tex
+locale 
+exit
+locale 
+source .bash_profile
+cat .bash_profile 
+exit
+locale 
+ls
+exit
+git add .
+git commit -m "pset10"
+git push
+git status
+git log
+git pull 
+cp pset9-sol.tex pset10-sol.tex
+open pset10-sol.tex 
+exit
+git add .
+git commit -m "pset-sol-10 intermediate"
+git push
+exit
+exit
+git pull 
+git add .
+git stash
+git pull 
+exit
+git stash pop stash@{0}
+git add .
+git stash
+git stash pop stash@{1}
+exit
+exit
+exit
+git add .
+git commit -m "pset-sol 10"
+git push
+git log
+git pull 
+ls
+exit
+git add .
+git commit -m "pset13"
+git push
+exit
+git pull 
+exit
+exit
+git add .
+git commit -m "pset13-sol"
+git push
+ls
+vim .gitignore 
+open .gitignore 
+exit
+cd ..
+git add .
+git commit -m "sufficient conditions"
+git push
+exit
+git add .
+cd ..
+git add .
+git commit -m "proof beginning"
+git push
+exit
+git add .
+git commit -m "proof completes"
+git push
+exit
+git add .
+git commit -m "concrete construction begins"
+git push
+git add .
+git commit -m "typo" 
+git push
+git add .
+git commit -m "some statements are refined"
+git push
+make 
+ls
+./f test.f
+cat test.f
+true;ls
+exit
+make test
+exit
+make test
+make 
+./f test.f
+ls
+exit
+make test
+make test
+./f test.f
+make test
+make test
+make test
+make 
+./f test.f
+exit

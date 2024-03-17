@@ -4,7 +4,6 @@
 (defconst wearry/pdf-lib-paths (list "~/Documents/Zettelkasten/pdf-lib/"))
 (defconst wearry/org-roam-notes-path "~/Documents/Zettelkasten/notes")
 
-
 (use-package citar
   :ensure t
   :custom
@@ -48,6 +47,9 @@ ${volume} (${year issued date}).\n")
 	org-log-into-drawer t
 	org-startup-indented t
 	org-highlight-latex-and-related '(native script entities))
+  (setq org-capture-templates
+	'(("n" "Notes" entry (file+headline "~/Documents/.notes.org" "Ideas")
+	  "* Notes of %? \n \n created on %t \n")))
   (with-eval-after-load 'ox-latex
     (add-to-list 'org-latex-classes
                  '("ctex" "\\documentclass[11pt]{ctexart}"
