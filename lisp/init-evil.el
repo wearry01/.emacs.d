@@ -29,18 +29,14 @@
 	("SPC l" . 'evil-window-right)
 	("SPC SPC" . 'execute-extended-command)))
 
-(use-package evil-surround
-  :ensure t
-  :init
-  (global-evil-surround-mode t))
-
 (use-package evil-nerd-commenter
   :ensure t
   :init
-  (define-key evil-normal-state-map
-	      (kbd "C-'") 'evilnc-comment-or-uncomment-lines)
-  (define-key evil-visual-state-map
-	      (kbd "C-'") 'evilnc-comment-or-uncomment-lines))
+  (with-eval-after-load 'evil-maps
+    (define-key evil-normal-state-map
+		(kbd "C-'") 'evilnc-comment-or-uncomment-lines)
+    (define-key evil-visual-state-map
+		(kbd "C-'") 'evilnc-comment-or-uncomment-lines)))
 
 ;; Unbind whitespaces
 
