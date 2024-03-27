@@ -20,7 +20,7 @@
   (add-to-list 'citar-file-open-functions
 	       '("pdf" . citar-file-open-external))
   (setq citar-templates
-        '((main . "${author editor:35}     ${date year issued:4}     ${title:65}")
+        '((main . "${author editor:35}     ${date year issued:5}     ${title:100}")
           (suffix . "  ${tags keywords keywords:40}")
           (preview . "${author editor} ${title}, \
 ${journal publisher container-title collection-title booktitle} \
