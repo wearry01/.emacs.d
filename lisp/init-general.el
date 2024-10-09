@@ -19,12 +19,11 @@
 (global-set-key (kbd "C-h C-v") 'find-variable)
 (global-set-key (kbd "C-h C-k") 'find-function-on-key)
 
-(global-set-key (kbd "s-a") 'mark-whole-buffer)
 (global-set-key (kbd "s-c") 'kill-ring-save)
-(global-set-key (kbd "s-s") 'save-buffer)
 (global-set-key (kbd "s-v") 'yank)
-(global-set-key (kbd "s-z") 'undo)
 (global-set-key (kbd "s-x") 'kill-region)
+(global-set-key (kbd "s-z") 'undo)
+(global-set-key (kbd "s-s") 'save-buffer)
 
 ;;; Package Configurations
 
@@ -42,7 +41,7 @@
 	      ("C-p" . 'company-select-previous))
   :init (global-company-mode)
   :config
-  (setq company-minimum-prefix-length 4)
+  (setq company-minimum-prefix-length 3)
   (setq company-idle-delay 0.1)
   (setq company-selection-wrap-around t))
 
@@ -69,7 +68,6 @@
 (use-package embark
   :ensure t
   :bind (("C-;" . embark-act)
-	 ("C-." . embark-dwim)
 	 :map minibuffer-local-map
 	 ("C-r" . embark-export-write))
   :init

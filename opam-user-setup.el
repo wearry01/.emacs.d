@@ -143,6 +143,8 @@
   (dolist (ext '(".cmo" ".cmx" ".cma" ".cmxa" ".cmxs" ".cmt" ".cmti" ".cmi" ".annot"))
     (add-to-list 'completion-ignored-extensions ext)))
 ;; ## end of OPAM user-setup addition for emacs / tuareg ## keep this line
+
+(setq merlin-ac-setup 'easy)
 ;; ## added by OPAM user-setup for emacs / ocp-indent ## ab8f6f35adca171d6c14f79260021097 ## you can edit, but keep this line
 ;; Load ocp-indent from its original switch when not found in current switch
 (when (not (assoc "ocp-indent" opam-tools-installed))
@@ -152,5 +154,3 @@
   (add-hook 'caml-mode-hook 'ocp-indent-caml-mode-setup  t)
   (setq ocp-indent-path "/Users/wearry/.opam/default/bin/ocp-indent"))
 ;; ## end of OPAM user-setup addition for emacs / ocp-indent ## keep this line
-
-(setq merlin-ac-setup 'easy)
