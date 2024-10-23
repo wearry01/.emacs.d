@@ -46,7 +46,7 @@ ${volume} (${year issued date}).\n")
   (setq org-log-done t
 	org-log-into-drawer t
 	org-startup-indented t
-	org-highlight-latex-and-related '(native script entities))
+	org-highlight-latex-and-related '(native entities))
   (setq org-capture-templates
 	'(("n" "Notes" entry (file+headline "~/Documents/notes.org" "Ideas")
 	  "* Notes of %? \n \n created on %t \n")))
