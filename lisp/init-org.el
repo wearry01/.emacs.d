@@ -1,5 +1,6 @@
-;; Init Org Mode
+;;; lisp/init-org.el --- Init Org Mode
 
+;; bibliography management
 (defconst wearry/bib-lib-paths (list "~/Documents/Zettelkasten/ref-lib.bib"))
 (defconst wearry/pdf-lib-paths (list "~/Documents/Zettelkasten/pdf-lib/"))
 (defconst wearry/org-roam-notes-path "~/Documents/Zettelkasten/notes")
@@ -29,7 +30,7 @@ ${volume} (${year issued date}).\n")
   :bind (("C-c i" . citar-insert-citation)
 	 ("C-c o" . citar-open)
 	 ("C-c b" . citar-insert-bibtex)
-	 ("C-c a" . citar-add-file-to-library)))
+	 ("C-c f" . citar-add-file-to-library)))
 
 (use-package citar-embark
   :ensure t
@@ -40,16 +41,17 @@ ${volume} (${year issued date}).\n")
 (use-package org
   :ensure org-contrib
   :bind (("C-c l" . org-store-link)
-	 ("C-c c" . org-capture))
+	 ("C-c c" . org-capture)
+	 ("C-c a" . org-agenda))
   :config
   (require 'org-checklist)
   (setq org-log-done t
 	org-log-into-drawer t
 	org-startup-indented t
 	org-highlight-latex-and-related '(native entities))
-  (setq org-capture-templates
-	'(("n" "Notes" entry (file+headline "~/Documents/notes.org" "Ideas")
-	  "* Notes of %? \n \n created on %t \n")))
+  ;; latex export
+  (require 'ox-beamer)
+  (setq org-highlight-latex-and-related '(latex))
   (with-eval-after-load 'ox-latex
     (add-to-list 'org-latex-classes
                  '("ctex" "\\documentclass[11pt]{ctexart}"
@@ -60,7 +62,11 @@ ${volume} (${year issued date}).\n")
                    ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
     (add-to-list 'org-latex-default-packages-alist
 		 '("" "color" nil))
-    (setq org-latex-compiler "xelatex")))
+    (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f")))
+  (setq org-capture-templates
+	'(("n" "Notes" entry (file+headline "~/Documents/notes.org" "Ideas")
+	   "* Notes of %? \n \n created on %t \n")
+	  ("t" "TODO" entry (file+headline "~/Documents/todo.org" "Tasks") ""))))
 
 (use-package org-ref
   :ensure t
@@ -68,6 +74,7 @@ ${volume} (${year issued date}).\n")
   :config
   (setq bibtex-dialect 'biblatex))
 
+;; org-roam configuration
 (use-package org-roam
   :ensure t
   :hook (org-mode . org-roam-db-autosync-mode)
@@ -100,7 +107,6 @@ ${volume} (${year issued date}).\n")
 	  ("C-c n o" . org-id-get-create)
 	  ("C-c n g" . org-roam-graph)
 	  ("C-c n t" . org-roam-tag-add)
-	  ("C-c n a" . org-roam-alias-add)
 	  ("C-c n l" . org-roam-buffer-toggle)))))
 
 (use-package oc
@@ -124,7 +130,6 @@ ${volume} (${year issued date}).\n")
   (citar-org-roam-mode))
 
 ;; Configure Hugo Post for Writing Blogs
-
 (use-package ox-hugo
   :ensure t
   :pin melpa

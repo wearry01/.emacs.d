@@ -1,5 +1,6 @@
-;; Init Packages
+;;; lisp/init-packages.el --- initialize packaging features for emacs
 
+;; Install use-package
 (require 'package)
 (setq package-archives
       '(("gnu"    . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
@@ -7,12 +8,9 @@
         ("melpa"  . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 (package-initialize)
 
-(when (not package-archive-contents)
-  (package-refresh-contents))
-
-;; Setup `use-package'
-
+;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
+  (package-refresh-contents)
   (package-install 'use-package))
 
 (provide 'init-packages)

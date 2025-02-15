@@ -24,8 +24,7 @@
      ("colorlinks=true, citecolor=red, linkcolor=cyan, urlcolor=blue" "hyperref" nil nil)))
  '(package-selected-packages
    '(citar evil-nerd-commenter evil-surround org-roam ox-hugo org-contrib org-plus-contrib doom-themes doom-modeline restart-emacs use-package evil wgrep timu-macos-theme embark-consult consult embark marginalia orderless vertico company))
- '(preview-default-option-list
-   '("displaymath" "floats" "graphics" "footnotes" "")))
+ '(preview-default-option-list '("displaymath" "floats" "graphics" "footnotes" "")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -1,3 +1,5 @@
+;;; init.el --- initialize emacs
+
 ;; -*- lexical-binding: t -*-
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
@@ -8,6 +10,7 @@
 (require 'init-evil)
 (require 'init-org)
 (require 'init-tex)
+(require 'init-llm)
 
 ;; Custom Configurations
 
