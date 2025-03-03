@@ -11,7 +11,7 @@
 	 ("C-c a" . org-agenda))
   :init
   (require 'org-checklist)
-  (setq org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIMESTAMP_IA")
+  (setq org-columns-default-format "%45ITEM(Task) %5PRIORITY %10CLOCKSUM %24CLOSED")
   (setq org-log-done t
 	org-log-into-drawer t
 	org-startup-indented t
