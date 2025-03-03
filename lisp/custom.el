@@ -6,7 +6,6 @@
  '(LaTeX-enable-toolbar nil)
  '(custom-safe-themes
    '("e3dedbd038f79ecaf01e0dbb947bb6eeec8374f322e7b4a2a224c9d9e1490c52" default))
- '(org-agenda-files nil)
  '(org-latex-default-packages-alist
    '(("AUTO" "inputenc" t
       ("pdflatex"))
