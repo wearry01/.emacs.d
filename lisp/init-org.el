@@ -18,7 +18,7 @@
 	org-highlight-latex-and-related '(native entities)
 	org-agenda-files (list wearry/org-agenda-path "~/Projects/blog/blogs.org")
 	org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-			    (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)" "MEETING"))
+			    (sequence "MEETING(m) WAITING(w@/!)" "HOLD(h@/!)" "|" "CANCELLED(c@/!)"))
 	org-todo-keyword-faces '(("TODO" :foreground "red" :weight bold)
 				 ("NEXT" :foreground "cyan" :weight bold)
 				 ("DONE" :foreground "green" :weight bold)
@@ -30,12 +30,12 @@
 	'(("c" "Complete Agenda View"
 	   ((agenda "" ((org-agenda-overriding-header "Weekly Schedule")
 			(org-deadline-warning-days 7)))
-	    (tags "PROJECT" ((org-agenda-overriding-header "PROJECTS")
+	    (tags "PROJECT" ((org-agenda-overriding-header "Working Projects")
 			     (org-agenda-skip-function
 			      '(org-agenda-skip-entry-if 'notregexp "PRJ"))))
-	    (tags "BLOG" ((org-agenda-overriding-header "BLOG POSTS")))
-	    (todo "NEXT" ((org-agenda-overriding-header "FORWARD A STEP")))
-	    (todo "MEETING" ((org-agenda-overriding-header "APPOINTED MEETING")))))))
+	    (tags "BLOG" ((org-agenda-overriding-header "Blog Posts")))
+	    (todo "NEXT" ((org-agenda-overriding-header "Step Forward")))
+	    (todo "MEETING" ((org-agenda-overriding-header "Appoited Meeting")))))))
   :config
   ;; latex support
   (require 'ox-beamer)
@@ -67,7 +67,10 @@
   :ensure t
   :hook (org-mode . org-roam-db-autosync-mode)
   :init (setq org-roam-v2-ack t) ;; Acknowledge V2 upgrade
-  :custom (org-roam-directory wearry/org-roam-notes-path)
+  :custom
+  (org-roam-directory wearry/org-roam-notes-path)
+  (org-roam-graph-viewer "open")
+  (org-roam-graph-executable "neato")
   :config
   (setq org-roam-capture-templates
 	'(("d" "default" plain "%?"

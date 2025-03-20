@@ -102,7 +102,7 @@ Supports exporting consult-grep to wgrep, file to wdeired, and consult-location 
   :ensure nil
   :hook (after-init . savehist-mode)
   :init (setq enable-recursive-minibuffers t ; Allow commands in minibuffers
-	      history-length 1000
+	      history-length 1024
 	      savehist-additional-variables '(mark-ring
 					      global-mark-ring
 					      search-ring
