@@ -61,6 +61,7 @@
 ;; org-roam configuration
 (defconst wearry/bib-lib-paths (list "~/Documents/Zettelkasten/ref-lib.bib"))
 (defconst wearry/pdf-lib-paths (list "~/Documents/Zettelkasten/pdf-lib/"))
+(defconst wearry/notes-lib-paths (list "~/Documents/Zettelkasten/notes/bib-notes/"))
 (defconst wearry/org-roam-notes-path "~/Documents/Zettelkasten/notes")
 
 (use-package org-roam
@@ -106,6 +107,7 @@
   :custom
   (citar-bibliography wearry/bib-lib-paths)
   (citar-library-paths wearry/pdf-lib-paths)
+  (citar-notes-paths wearry/notes-lib-paths)
   :hook
   (LaTeX-mode . citar-capf-setup)
   (org-mode . citar-capf-setup)
