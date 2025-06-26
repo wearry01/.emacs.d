@@ -30,9 +30,9 @@
 	'(("c" "Complete Agenda View"
 	   ((agenda "" ((org-agenda-overriding-header "Weekly Schedule")
 			(org-deadline-warning-days 7)))
-	    (tags "PROJECT" ((org-agenda-overriding-header "Working Projects")
+	    (tags "PROBLEM" ((org-agenda-overriding-header "Important Problems")
 			     (org-agenda-skip-function
-			      '(org-agenda-skip-entry-if 'notregexp "PRJ"))))
+			      '(org-agenda-skip-entry-if 'notregexp "PRB"))))
 	    (tags "BLOG" ((org-agenda-overriding-header "Blog Posts")))
 	    (todo "NEXT" ((org-agenda-overriding-header "Step Forward")))
 	    (todo "MEETING" ((org-agenda-overriding-header "Appoited Meeting")))))))

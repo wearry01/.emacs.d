@@ -19,29 +19,29 @@
   	   :default-chat-non-standard-params '(("num_ctx" . 16384))))
   (setopt ellama-summarization-provider
   	  (make-llm-ollama
-  	   :chat-model "qwen2.5"
+  	   :chat-model "phi4-mini"
   	   :embedding-model "nomic-embed-text"
   	   :default-chat-non-standard-params '(("num_ctx" . 32768))))
   (setopt ellama-coding-provider
   	  (make-llm-ollama
-  	   :chat-model "qwen2.5"
+  	   :chat-model "qwen3"
   	   :embedding-model "nomic-embed-text"
   	   :default-chat-non-standard-params '(("num_ctx" . 32768))))
   ;; Naming new sessions with llm
   (setopt ellama-naming-provider
   	  (make-llm-ollama
-  	   :chat-model "qwen2.5"
+  	   :chat-model "phi4-mini"
   	   :embedding-model "nomic-embed-text"
   	   :default-chat-non-standard-params '(("stop" . ("\n")))))
   (setopt ellama-naming-scheme 'ellama-generate-name-by-llm)
   ;; Translation llm provider
   (setopt ellama-translation-provider
   	  (make-llm-ollama
-  	   :chat-model "qwen2.5"
+  	   :chat-model "qwen3"
   	   :embedding-model "nomic-embed-text"
   	   :default-chat-non-standard-params '(("num_ctx" . 32768))))
   (setopt ellama-extraction-provider (make-llm-ollama
-  				      :chat-model "qwen2.5"
+  				      :chat-model "phi4-mini"
   				      :embedding-model "nomic-embed-text"
   				      :default-chat-non-standard-params '(("num_ctx" . 32768))))
 
