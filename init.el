@@ -9,6 +9,7 @@
 (require 'init-general)
 (require 'init-evil)
 (require 'init-org)
+(require 'init-org-ext)
 (require 'init-tex)
 (require 'init-llm)
 
