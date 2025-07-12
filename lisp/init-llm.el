@@ -1,6 +1,7 @@
 ;;; lisp/init-llm.el --- Init Ellama
 
-(use-package ellama :ensure t
+(use-package ellama
+  :ensure t
   ;; :bind ("C-c e" . ellama-transient-main-menu)
   :init
   ;; setup key bindings

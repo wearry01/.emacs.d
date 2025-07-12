@@ -1,4 +1,4 @@
-;; Init Evil Mode
+;;; lisp/init-evil.el --- Init Evil Mode
 
 (use-package evil
   :ensure t
@@ -7,7 +7,7 @@
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
   (setq evil-undo-system 'undo-redo)
-  :hook (after-init . evil-mode)
+  :config (evil-mode t)
   :bind
   (:map evil-normal-state-map
 	("/" . 'consult-line)
@@ -29,6 +29,12 @@
 	("SPC l" . 'evil-window-right)
 	("SPC SPC" . 'execute-extended-command)))
 
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
+
 (use-package evil-nerd-commenter
   :ensure t
   :init
@@ -36,6 +42,8 @@
     (define-key evil-normal-state-map
 		(kbd "C-'") 'evilnc-comment-or-uncomment-lines)
     (define-key evil-visual-state-map
+		(kbd "C-'") 'evilnc-comment-or-uncomment-lines)
+    (define-key evil-insert-state-map
 		(kbd "C-'") 'evilnc-comment-or-uncomment-lines)))
 
 ;; Unbind whitespaces

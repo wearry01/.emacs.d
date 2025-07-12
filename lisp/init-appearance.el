@@ -1,4 +1,4 @@
-;; Appearence Setting
+;; lisp/init-appearance.org --- Appearance Setting
 
 (global-display-line-numbers-mode)
 (global-hl-line-mode)
@@ -22,4 +22,4 @@
   (doom-modeline-unicode-fallback t)
   (doom-modeline-enable-word-count nil))
 
-(provide 'init-appearence)
+(provide 'init-appearance)
