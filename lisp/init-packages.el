@@ -22,6 +22,7 @@
         auto-package-update-delete-old-versions t)  ;; 删除旧版本
   (auto-package-update-maybe))
 
+(require 'server)
 (unless (server-running-p)
   (server-start))
 
