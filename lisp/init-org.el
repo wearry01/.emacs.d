@@ -45,9 +45,9 @@
 	org-log-into-drawer t
 	org-clock-into-drawer "LOGBOOK"
 	org-habit-show-habits-only-for-today nil      ;; 显示整周打卡图
-	org-habit-graph-column 62                     ;; 图形开始列位置
-	org-habit-preceding-days 3
-	org-habit-following-days 7
+	org-habit-graph-column 64                     ;; 图形开始列位置
+	org-habit-preceding-days 6
+	org-habit-following-days 3
 	org-columns-default-format "%45ITEM(Task) %5PRIORITY %10CLOCKSUM %24CLOSED")
   (setq org-agenda-custom-commands
 	'(("c" "Complete Agenda View"
