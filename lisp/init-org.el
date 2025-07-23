@@ -48,6 +48,7 @@
 	org-habit-graph-column 64                     ;; 图形开始列位置
 	org-habit-preceding-days 6
 	org-habit-following-days 3
+	org-clock-mode-line-total 'today ;; 可选: today
 	org-columns-default-format "%45ITEM(Task) %5PRIORITY %10CLOCKSUM %24CLOSED")
   (setq org-agenda-custom-commands
 	'(("c" "Complete Agenda View"
