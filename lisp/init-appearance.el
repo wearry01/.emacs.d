@@ -5,8 +5,10 @@
 (electric-pair-mode)
 (global-auto-revert-mode)
 
-(setq inhibit-startup-screen t)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
 (set-scroll-bar-mode nil)
+(setq inhibit-startup-screen t)
 (set-face-attribute 'default nil :height 140)
 
 (use-package timu-macos-theme

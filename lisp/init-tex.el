@@ -17,11 +17,13 @@
 	 (LaTeX-mode . TeX-source-correlate-mode))
   :config
   (setq-default TeX-master nil)
-  (setq TeX-auto-save t
+  (setq
+	LaTeX-electric-left-right-brace t
+	TeX-auto-save t
 	TeX-parse-self t
 	reftex-plug-into-AUCTeX t
+	TeX-electric-math (cons "\\(" "\\)")
 	TeX-electric-sub-and-superscript t
-	LaTeX-electric-left-right-brace t
 	TeX-source-correlate-method 'synctex)
   (setq TeX-view-program-list
 	'(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))

@@ -42,7 +42,7 @@
 	  ("MEETING" :foreground "forest green" :weight bold)))
   (setq org-startup-indented t
 	org-log-done t
-	org-log-into-drawer t
+	org-log-into-drawer "LOGSTATE"
 	org-clock-into-drawer "LOGBOOK"
 	org-habit-show-habits-only-for-today nil      ;; 显示整周打卡图
 	org-habit-graph-column 64                     ;; 图形开始列位置
