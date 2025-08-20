@@ -9,6 +9,7 @@
 (setq ring-bell-function 'ignore)
 
 (add-hook 'before-save-hook 'time-stamp)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Global Keybindings
 
