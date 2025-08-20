@@ -1,5 +1,5 @@
 ;;; lisp/init-org-ext.el --- Org Extensions Configuration
-;;; roam, citar, hugo
+;;; org-roam, citar, ox-hugo
 
 (defvar wearry/org-roam-notes-path "~/Documents/Zettelkasten/notes")
 (defvar wearry/bib-lib-paths (list "~/Documents/Zettelkasten/ref-lib.bib"))
@@ -20,12 +20,14 @@
   (org-roam-db-autosync-mode)
   (setq org-roam-capture-templates
 	'(("d" "default" plain "%?"
-	   :if-new (file+head "${slug}.org"
-			      "#+title: ${title}\n#+created: %U\n#+last-modified: %t\n\n")
+	   :if-new (file+head
+		    "${slug}.org"
+		    "#+title: ${title}\n#+created: %U\n#+last-modified: %t\n\n")
 	   :immediate-finish t)
 	  ("n" "bibliography notes" plain "%?"
-	   :if-new (file+head "bib-notes/notes_on_<${citar-title}>_${citar-date}.org"
-			      "#+title: Notes on <${citar-title}>\n#+created: %U\n#+last-modified: %t\n\n")
+	   :if-new (file+head
+		    "bib-notes/notes_on_<${citar-title}>_${citar-date}.org"
+		    "#+title: Notes on <${citar-title}>\n#+created: %U\n#+last-modified: %t\n\n")
 	   :unnarrowed t))
 	time-stamp-start "#\\+last-modified:[ \t]*[<\"]")
   (add-to-list 'display-buffer-alist
@@ -34,7 +36,7 @@
                  (dedicated . t)
 		 (side . right)
 		 (slot . 0)
-		 (window-width . 0.25)
+		 (window-width . 0.3)
 		 (window-parameters . (no-delete-other-windows . t))))
   :bind
   (("C-c n f" . org-roam-node-find)

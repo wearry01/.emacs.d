@@ -18,6 +18,7 @@
 	("]b" . 'switch-to-next-buffer)
 	("C-w" . 'kill-this-buffer)
 	("C-e" . 'find-file)
+	("C-f" . 'consult-find)
 	("C-b" . 'consult-buffer)
 	("C-l" . 'consult-locate)
 	("C-<return>" . 'consult-grep)
