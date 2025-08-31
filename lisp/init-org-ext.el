@@ -48,7 +48,7 @@
 	  ("C-c n t" . org-roam-tag-add)
 	  ("C-c n l" . org-roam-buffer-toggle)))))
 
-;; config org-citar 
+;; config org-citar
 (use-package citar
   :ensure t
   :custom
@@ -132,5 +132,92 @@ See `org-capture-templates' for more information."
 	       '("h" "Hugo post" entry
 		 (file+headline "~/Projects/blog/blogs.org" "Blog Drafts")
 		 (function org-hugo-new-subtree-post-capture-template))))
+
+(defun wearry/org-insert-log-into-archive (archive-file path drawer line)
+  "Insert LINE into ARCHIVE-FILE under HEADING with LEVEL,
+inside LOGBOOK. Adds an :ARCHIVE: tag to the heading if
+not already present."
+  (with-current-buffer (find-file-noselect archive-file)
+    (org-with-wide-buffer
+     (goto-char (point-min))
+     ;; create headline level by level
+     (let ((level 1))
+       (dolist (h path)
+         (let ((stars (make-string level ?*)))
+           (unless (re-search-forward
+                    (format "^%s %s" stars (regexp-quote h)) nil t)
+             (goto-char (point-max))
+             (unless (bolp) (insert "\n"))
+             (insert stars " " h (if (= level 1) " :ARCHIVE:" "") "\n")))
+         (org-back-to-heading t)
+         (setq level (+ 1 level))))
+     (org-back-to-heading t)
+     ;; locate LOGBOOK
+     (if (re-search-forward drawer (save-excursion (org-end-of-subtree t)) t)
+	 (forward-line 1)
+       ;; create a new if not exist
+       (org-end-of-meta-data t)
+       (insert drawer "\n:END:\n")
+       (forward-line -1))
+     (insert line)
+     ;; sorting LOGBOOK entries
+     (forward-line -1)
+     (save-excursion
+       (let ((beg (line-beginning-position)) end)
+	 (re-search-forward ":END:" nil t) ;; back to :END:
+	 (forward-line -1)
+	 (setq end (line-end-position))
+	 (sort-lines t beg end)))
+     (save-buffer))))
+
+(defun wearry/org-archive-old-log-entries-by-drawer (months drawer)
+  (let* ((cutoff (time-subtract (current-time)
+				(days-to-time (* 30 months))))
+	 (archive-dir (expand-file-name "archive/"
+					(file-name-directory (buffer-file-name))))
+	 (archive-file (expand-file-name
+			(concat (file-name-base (buffer-file-name)) "-log-archive.org")
+			archive-dir)))
+    ;; 确保子文件夹存在
+    (unless (file-directory-p archive-dir)
+      (make-directory archive-dir t))
+    (save-excursion
+      (goto-char (point-min))
+      (while (re-search-forward drawer nil t)
+        (let ((log-start (match-beginning 0))
+              path)
+          ;; save title info
+          (save-excursion
+            (org-back-to-heading t)
+            (setq path (append (org-get-outline-path t)
+                               (list (org-get-heading t t t t)))))
+          ;; Match line by line until meeting :END:
+	  (while (and (not (looking-at ":END:"))
+		      (not (eobp)))
+	    (let* ((line (thing-at-point 'line t))
+		   (date (and (string-match
+			       "\\([0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}\\)"
+			       line)
+			      (match-string 1 line))))
+	      (cond
+	       ((and date (time-less-p (org-time-string-to-time date) cutoff))
+		(wearry/org-insert-log-into-archive archive-file path drawer line)
+		;; delete current line including RET
+		(delete-region (line-beginning-position)
+			       (+ 1 (line-end-position))))
+	       (t (unless (looking-at ":END:")
+		    (forward-line 1)))))))))
+    (save-buffer)))
+
+(defun wearry/org-archive-old-log-entries (&optional months drawers)
+  "Archive LOGBOOK entries older than MONTHS (default 1)
+into a corresponding headline in an archive file.
+Keeps tasks themselves, only archives old log lines.
+Archive headlines get an :ARCHIVE: tag."
+  (interactive "P")
+  (let* ((months (or months 1))
+	 (drawers (or drawers (list ":LOGBOOK:" ":LOGSTATE:"))))
+    (dolist (drawer drawers)
+      (wearry/org-archive-old-log-entries-by-drawer months drawer))))
 
 (provide 'init-org-ext)
