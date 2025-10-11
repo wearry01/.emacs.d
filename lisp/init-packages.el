@@ -16,10 +16,9 @@
 (use-package auto-package-update
   :ensure t
   :config
-  (setq auto-package-update-interval 10
-        auto-package-update-prompt-before-update t  ;; 是否弹出确认
+  (setq auto-package-update-interval 45
         auto-package-update-hide-results nil
-        auto-package-update-delete-old-versions t)  ;; 删除旧版本
+        auto-package-update-delete-old-versions t)
   (auto-package-update-maybe))
 
 (require 'server)
