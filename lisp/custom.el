@@ -7,8 +7,10 @@
  '(custom-safe-themes
    '("e3dedbd038f79ecaf01e0dbb947bb6eeec8374f322e7b4a2a224c9d9e1490c52" default))
  '(org-latex-default-packages-alist
-   '(("AUTO" "inputenc" t ("pdflatex"))
-     ("T1" "fontenc" t ("pdflatex"))
+   '(("AUTO" "inputenc" t
+      ("pdflatex"))
+     ("T1" "fontenc" t
+      ("pdflatex"))
      ("" "graphicx" t nil)
      ("" "longtable" nil nil)
      ("" "wrapfig" nil nil)

@@ -48,6 +48,10 @@
 	  ("C-c n t" . org-roam-tag-add)
 	  ("C-c n l" . org-roam-buffer-toggle)))))
 
+(defun wearry/open-citar-bib ()
+  (interactive)
+  (find-file (car wearry/bib-lib-paths)))
+
 ;; config org-citar
 (use-package citar
   :ensure t
@@ -74,7 +78,7 @@ ${volume} (${year issued date}).\n")
           (note . "Notes on ${author editor} ${title}")))
   :bind (("C-c i" . citar-insert-citation)
 	 ("C-c o" . citar-open)
-	 ("C-c b" . citar-insert-bibtex)
+	 ("C-c b" . wearry/open-citar-bib)
 	 ("C-c f" . citar-add-file-to-library)))
 
 (use-package citar-embark
@@ -83,11 +87,11 @@ ${volume} (${year issued date}).\n")
   :no-require
   :config (citar-embark-mode))
 
-(use-package org-ref
-  :ensure t
-  :after org
-  :config
-  (setq bibtex-dialect 'biblatex))
+;; (use-package org-ref
+;;   :ensure t
+;;   :after org
+;;   :config
+;;   (setq bibtex-dialect 'biblatex))
 
 (use-package oc
   :config

@@ -40,7 +40,9 @@
 	  ("HOLD" :foreground "magenta" :weight bold)
 	  ("CANCELLED" :foreground "grey" :weight bold)
 	  ("MEETING" :foreground "forest green" :weight bold)))
+
   (setq org-startup-indented t
+	org-preview-latex-default-process 'dvisvgm
 	org-log-done t
 	org-log-into-drawer "LOGSTATE"
 	org-clock-into-drawer "LOGBOOK"
@@ -51,6 +53,9 @@
 	org-habit-following-days 4
 	org-clock-mode-line-total 'today ;; 可选: today
 	org-columns-default-format "%45ITEM(Task) %5PRIORITY %10CLOCKSUM %24CLOSED")
+
+  (plist-put org-format-latex-options :scale 1.5)
+
   (setq org-agenda-custom-commands
 	'(("c" "Complete Agenda View"
 	   ((agenda "" ((org-agenda-overriding-header "📅 Weekly Schedule")
@@ -89,5 +94,12 @@
 		   (file ,(expand-file-name
 			   (format-time-string "%Y-W%V.org")
 			   wearry/org-journal-dir))))))
+
+(use-package xenops
+  :ensure t
+  :hook (org-mode . xenops-mode)
+  :config
+  (setq xenops-reveal-on-entry t)
+  (setq xenops-math-image-scale-factor 1.414))
 
 (provide 'init-org)
