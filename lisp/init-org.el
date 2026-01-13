@@ -11,6 +11,7 @@
     ,(expand-file-name "habit.org" wearry/org-agenda-path))
   "Org-agenda file list")
 
+
 (defvar wearry/org-journal-dir
   (expand-file-name "journal/" wearry/org-agenda-path)
   "Weekly journal directory")
@@ -53,8 +54,6 @@
 	org-habit-following-days 4
 	org-clock-mode-line-total 'today ;; 可选: today
 	org-columns-default-format "%45ITEM(Task) %5PRIORITY %10CLOCKSUM %24CLOSED")
-
-  (plist-put org-format-latex-options :scale 1.5)
 
   (setq org-agenda-custom-commands
 	'(("c" "Complete Agenda View"
@@ -99,7 +98,8 @@
   :ensure t
   :hook (org-mode . xenops-mode)
   :config
-  (setq xenops-reveal-on-entry t)
-  (setq xenops-math-image-scale-factor 1.414))
+  (setq xenops-reveal-on-entry t
+	xenops-math-preview-on-type nil
+        xenops-math-image-scale-factor 1.414))
 
 (provide 'init-org)

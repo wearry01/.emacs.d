@@ -82,6 +82,7 @@
 
 (use-package consult
   :ensure t
+  :bind (("C-x b" . consult-buffer))
   :config (setq consult-locate-args "mdfind -name"))
 
 (use-package embark

@@ -7,7 +7,7 @@
 (require 'init-packages)
 (require 'init-appearance)
 (require 'init-general)
-(require 'init-evil)
+(require 'init-meow)
 (require 'init-org)
 (require 'init-org-ext)
 (require 'init-tex)

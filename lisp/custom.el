@@ -22,7 +22,7 @@
      ("a4paper, total={6in, 8in}" "geometry" nil nil)
      ("colorlinks=true, citecolor=red, linkcolor=cyan, urlcolor=blue" "hyperref" nil nil)))
  '(package-selected-packages
-   '(latex-preview-pane evil-collection auto-package-update citar evil-nerd-commenter evil-surround org-roam ox-hugo org-contrib org-plus-contrib doom-themes doom-modeline restart-emacs use-package evil wgrep timu-macos-theme embark-consult consult embark marginalia orderless vertico company))
+   '(meow latex-preview-pane evil-collection auto-package-update citar evil-nerd-commenter evil-surround org-roam ox-hugo org-contrib org-plus-contrib doom-themes doom-modeline restart-emacs use-package evil wgrep timu-macos-theme embark-consult consult embark marginalia orderless vertico company))
  '(preview-default-option-list '("displaymath" "floats" "graphics" "footnotes" "")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
