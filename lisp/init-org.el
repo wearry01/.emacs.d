@@ -11,7 +11,6 @@
     ,(expand-file-name "habit.org" wearry/org-agenda-path))
   "Org-agenda file list")
 
-
 (defvar wearry/org-journal-dir
   (expand-file-name "journal/" wearry/org-agenda-path)
   "Weekly journal directory")
@@ -28,7 +27,6 @@
 	 ("C-c a" . org-agenda))
   :init
   (require 'org-habit)
-  (require 'org-checklist)
   (setq org-agenda-files wearry/org-agenda-files)
   (setq org-todo-keywords
 	'((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
@@ -43,7 +41,6 @@
 	  ("MEETING" :foreground "forest green" :weight bold)))
 
   (setq org-startup-indented t
-	org-preview-latex-default-process 'dvisvgm
 	org-log-done t
 	org-log-into-drawer "LOGSTATE"
 	org-clock-into-drawer "LOGBOOK"
@@ -94,12 +91,18 @@
 			   (format-time-string "%Y-W%V.org")
 			   wearry/org-journal-dir))))))
 
-(use-package xenops
+;; (use-package xenops
+;;    :ensure t
+;;    :hook (org-mode . xenops-mode)
+;;    :config
+;;    (setq xenops-reveal-on-entry t
+;;          xenops-math-image-scale-factor 1.414))
+
+(use-package org-fragtog
   :ensure t
-  :hook (org-mode . xenops-mode)
+  :hook (org-mode . org-fragtog-mode)
   :config
-  (setq xenops-reveal-on-entry t
-	xenops-math-preview-on-type nil
-        xenops-math-image-scale-factor 1.414))
+  (setq org-preview-latex-default-process 'dvisvgm)
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5)))
 
 (provide 'init-org)

@@ -8,9 +8,7 @@
         ("melpa"  . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 
 ;; Bootstrap `use-package'
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+(require 'use-package)
 
 ;; Update-packages every 10 days automatically
 (use-package auto-package-update

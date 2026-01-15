@@ -11,7 +11,7 @@
 (require 'init-org)
 (require 'init-org-ext)
 (require 'init-tex)
-(require 'init-meow)
+(require 'init-evil)
 
 ;; Custom Configurations
 

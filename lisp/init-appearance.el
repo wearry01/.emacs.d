@@ -9,7 +9,7 @@
 (tool-bar-mode -1)
 (set-scroll-bar-mode nil)
 (setq inhibit-startup-screen t)
-(set-face-attribute 'default nil :height 140)
+(set-face-attribute 'default nil :font "Monaco" :height 144)
 
 (use-package timu-macos-theme
   :ensure t
