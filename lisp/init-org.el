@@ -40,8 +40,11 @@
 	  ("CANCELLED" :foreground "grey" :weight bold)
 	  ("MEETING" :foreground "forest green" :weight bold)))
 
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
+
   (setq org-startup-indented t
 	org-log-done t
+	org-preview-latex-default-process 'dvisvgm
 	org-log-into-drawer "LOGSTATE"
 	org-clock-into-drawer "LOGBOOK"
 	org-habit-show-habits-only-for-today nil
@@ -100,9 +103,6 @@
 
 (use-package org-fragtog
   :ensure t
-  :hook (org-mode . org-fragtog-mode)
-  :config
-  (setq org-preview-latex-default-process 'dvisvgm)
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5)))
+  :hook (org-mode . org-fragtog-mode))
 
 (provide 'init-org)

@@ -16,7 +16,7 @@
 	("`" . 'eshell)
 	("[b" . 'switch-to-prev-buffer)
 	("]b" . 'switch-to-next-buffer)
-	("C-w" . 'kill-this-buffer)
+	("C-w" . 'kill-current-buffer)
 	("C-e" . 'find-file)
 	("C-f" . 'consult-find)
 	("C-b" . 'consult-buffer)
@@ -28,6 +28,7 @@
 	("SPC j" . 'evil-window-down)
 	("SPC k" . 'evil-window-up)
 	("SPC l" . 'evil-window-right)
+	("SPC x" . 'kill-buffer-and-window)
 	("SPC SPC" . 'execute-extended-command)))
 
 (use-package evil-collection
@@ -48,7 +49,6 @@
 		(kbd "C-'") 'evilnc-comment-or-uncomment-lines)))
 
 ;; Unbind whitespaces
-
 (with-eval-after-load 'evil-maps
   (define-key evil-motion-state-map (kbd "TAB") nil)
   (define-key evil-motion-state-map (kbd "RET") nil)
