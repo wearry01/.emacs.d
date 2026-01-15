@@ -7,11 +7,11 @@
 (require 'init-packages)
 (require 'init-appearance)
 (require 'init-general)
-(require 'init-meow)
+(require 'init-llm)
 (require 'init-org)
 (require 'init-org-ext)
 (require 'init-tex)
-(require 'init-llm)
+(require 'init-meow)
 
 ;; Custom Configurations
 
