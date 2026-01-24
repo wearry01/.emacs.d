@@ -40,7 +40,6 @@
 	  ("CANCELLED" :foreground "grey" :weight bold)
 	  ("MEETING" :foreground "forest green" :weight bold)))
 
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
 
   (setq org-startup-indented t
 	org-log-done t
@@ -68,6 +67,7 @@
   :config
   ;; LaTeX & Beamer
   (require 'ox-beamer)
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
   (with-eval-after-load 'ox-latex
     (add-to-list 'org-latex-classes
                  '("ctex" "\\documentclass[11pt]{ctexart}"
