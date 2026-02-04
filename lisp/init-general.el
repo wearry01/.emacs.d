@@ -98,4 +98,11 @@
   :hook (after-init . which-key-mode)
   :custom (which-key-idle-delay 0.5))
 
+(use-package jinx
+  :ensure t
+  :hook ((org-mode . global-jinx-mode)
+	 (LaTeX-mode . global-jinx-mode))
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages)))
+
 (provide 'init-general)

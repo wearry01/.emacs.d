@@ -9,16 +9,17 @@
   (LaTeX-mode . turn-on-cdlatex)
   (org-mode . turn-on-org-cdlatex)
   :init
-  (setq cdlatex-takeover-parenthesis nil))
+  (setq cdlatex-takeover-parenthesis nil
+	cdlatex-paired-parens "${[("))
 
 (use-package tex
   :ensure auctex
   :hook ((LaTeX-mode . turn-on-reftex)
-	 (LaTeX-mode . TeX-source-correlate-mode))
+	 (LaTeX-mode . TeX-source-correlate-mode)
+	 (LaTeX-mode . outline-minor-mode))
   :config
   (setq-default TeX-master nil)
-  (setq
-	LaTeX-electric-left-right-brace t
+  (setq LaTeX-electric-left-right-brace t
 	TeX-auto-save t
 	TeX-parse-self t
 	reftex-plug-into-AUCTeX t
