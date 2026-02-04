@@ -2,7 +2,6 @@
 
 (global-display-line-numbers-mode)
 (global-hl-line-mode)
-(electric-pair-mode)
 (global-auto-revert-mode)
 
 (menu-bar-mode -1)

@@ -18,7 +18,7 @@
 	("]b" . 'switch-to-next-buffer)
 	("C-w" . 'kill-current-buffer)
 	("C-e" . 'find-file)
-	("C-f" . 'consult-find)
+	("C-f" . 'jinx-correct-nearest)
 	("C-b" . 'consult-buffer)
 	("C-l" . 'consult-locate)
 	("C-<return>" . 'consult-grep)

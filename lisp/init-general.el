@@ -2,6 +2,8 @@
 
 ;; Basic Properties
 
+(electric-pair-mode)
+
 (setq mac-option-modifier 'meta
       mac-command-modifier 'super)
 (setq make-backup-files nil)
@@ -56,7 +58,7 @@
               ("C-n" . 'company-select-next)
               ("C-p" . 'company-select-previous))
   :config
-  (setq company-minimum-prefix-length 3
+  (setq company-minimum-prefix-length 5
         company-idle-delay 0.15
         company-tooltip-align-annotations t))
 
@@ -82,27 +84,27 @@
   :ensure t
   :config (setq consult-locate-args "mdfind -name"))
 
-(use-package embark
-  :ensure t
-  :bind (("C-;" . embark-act))
-  :init
-  (setq prefix-help-command #'embark-prefix-help-command))
-
-(use-package embark-consult
-  :ensure t
-  :after (embark consult)
-  :hook (embark-collect-mode . consult-preview-at-point-mode))
-
 (use-package which-key
   :ensure t
   :hook (after-init . which-key-mode)
   :custom (which-key-idle-delay 0.5))
 
+(use-package smartparens
+  :ensure t
+  :hook (org-mode . smartparens-mode)
+  :config
+  (require 'smartparens-config)
+  (sp-with-modes 'org-mode
+    (sp-local-pair "\\(" "\\)")
+    (sp-local-pair "\\[" "\\]")
+    (sp-local-pair "<" nil :actions :rem)))
+
 (use-package jinx
   :ensure t
-  :hook ((org-mode . global-jinx-mode)
-	 (LaTeX-mode . global-jinx-mode))
-  :bind (("M-$" . jinx-correct)
-         ("C-M-$" . jinx-languages)))
+  :hook ((org-mode . jinx-mode)
+	 (LaTeX-mode . jinx-mode)))
+
+(with-eval-after-load 'jinx
+  (add-to-list 'jinx-exclude-regexps '(t "\\cc")))
 
 (provide 'init-general)
