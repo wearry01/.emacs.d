@@ -81,11 +81,11 @@ ${volume} (${year issued date}).\n")
 	 ("C-c b" . wearry/open-citar-bib)
 	 ("C-c f" . citar-add-file-to-library)))
 
-(use-package citar-embark
-  :ensure t
-  :after citar embark
-  :no-require
-  :config (citar-embark-mode))
+;; (use-package citar-embark
+;;   :ensure t
+;;   :after citar embark
+;;   :no-require
+;;   :config (citar-embark-mode))
 
 ;; (use-package org-ref
 ;;   :ensure t
