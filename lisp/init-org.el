@@ -52,9 +52,7 @@
 	org-habit-following-days 4
 	;; config preview
 	org-preview-latex-default-process 'dvisvgm
-	org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
-	;; org-columns-default-format "%45ITEM(Task) %5PRIORITY %10CLOCKSUM %24CLOSED"
-	)
+	org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
 
   (setq org-agenda-custom-commands
 	'(("c" "Complete Agenda View"
@@ -69,7 +67,6 @@
   :config
   ;; LaTeX & Beamer
   (require 'ox-beamer)
-  (setq )
   (with-eval-after-load 'ox-latex
     (add-to-list 'org-latex-classes
                  '("ctex" "\\documentclass[11pt]{ctexart}"
