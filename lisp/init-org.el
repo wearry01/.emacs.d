@@ -40,19 +40,21 @@
 	  ("CANCELLED" :foreground "grey" :weight bold)
 	  ("MEETING" :foreground "forest green" :weight bold)))
 
-
   (setq org-startup-indented t
 	org-log-done t
-	org-preview-latex-default-process 'dvisvgm
 	org-log-into-drawer "LOGSTATE"
 	org-clock-into-drawer "LOGBOOK"
+	org-clock-mode-line-total 'today ;; 可选: today
+	;; config org-habit
 	org-habit-show-habits-only-for-today nil
 	org-habit-graph-column 64
-	org-archive-subtree-save-file-p t
 	org-habit-preceding-days 8
 	org-habit-following-days 4
-	org-clock-mode-line-total 'today ;; 可选: today
-	org-columns-default-format "%45ITEM(Task) %5PRIORITY %10CLOCKSUM %24CLOSED")
+	;; config preview
+	org-preview-latex-default-process 'dvisvgm
+	org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
+	;; org-columns-default-format "%45ITEM(Task) %5PRIORITY %10CLOCKSUM %24CLOSED"
+	)
 
   (setq org-agenda-custom-commands
 	'(("c" "Complete Agenda View"
@@ -67,7 +69,7 @@
   :config
   ;; LaTeX & Beamer
   (require 'ox-beamer)
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
+  (setq )
   (with-eval-after-load 'ox-latex
     (add-to-list 'org-latex-classes
                  '("ctex" "\\documentclass[11pt]{ctexart}"

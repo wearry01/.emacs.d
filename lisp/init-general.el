@@ -76,9 +76,9 @@
   (setq completion-styles '(orderless)
 	completion-category-defaults nil))
 
-(use-package wgrep
-  :ensure t
-  :config (setq wgrep-auto-save-buffer t))
+;; (use-package wgrep
+;;   :ensure t
+;;   :config (setq wgrep-auto-save-buffer t))
 
 (use-package consult
   :ensure t
@@ -102,7 +102,8 @@
 (use-package jinx
   :ensure t
   :hook ((org-mode . jinx-mode)
-	 (LaTeX-mode . jinx-mode)))
+	 (LaTeX-mode . jinx-mode))
+  :config (setq jinx-languages "en_US"))
 
 (with-eval-after-load 'jinx
   (add-to-list 'jinx-exclude-regexps '(t "\\cc")))
