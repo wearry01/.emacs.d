@@ -91,7 +91,7 @@
 
 (use-package smartparens
   :ensure t
-  :hook (after-init . smartparens-mode)
+  :hook (after-init . smartparens-global-mode)
   :config
   (require 'smartparens-config)
   (sp-with-modes 'org-mode
