@@ -1,10 +1,30 @@
 ;;; lisp/init-org-ext.el --- Org Extensions Configuration
 ;;; org-roam, citar, ox-hugo
 
-(defvar wearry/org-roam-notes-path "~/Documents/Zettelkasten/notes")
+;; config local variables for paths
+(defvar wearry/org-roam-notes-path "~/Documents/Zettelkasten/roam-notes/")
 (defvar wearry/bib-lib-paths (list "~/Documents/Zettelkasten/ref-lib.bib"))
 (defvar wearry/pdf-lib-paths (list "~/Documents/Zettelkasten/pdf-lib/"))
-(defvar wearry/notes-lib-paths (list "~/Documents/Zettelkasten/notes/bib-notes/"))
+(defvar wearry/notes-lib-paths (list "~/Documents/Zettelkasten/roam-notes/bib-notes/"))
+
+(defvar wearry/org-journal-dir "~/Documents/Zettelkasten/journals/"
+  "Weekly journal directory")
+
+(with-eval-after-load 'org-capture
+  (add-to-list 'org-capture-templates
+	       `("w" "Weekly Journal" entry
+		 (file ,(expand-file-name
+			 (format-time-string "%Y/%Y-W%V.org")
+			 wearry/org-journal-dir))
+		 "* Week Journal %<%Y-W%V>\n** Overall Goals\n%?** Daily Digest\n** Summary & Prospect\n"
+		 :jump-to-captured t)))
+
+(defvar wearry/org-thoughts-dir
+  (expand-file-name "thoughts/" wearry/org-roam-notes-path))
+
+(defun wearry/open-citar-bib ()
+  (interactive)
+  (find-file (car wearry/bib-lib-paths)))
 
 ;; org-roam configuration
 (use-package org-roam
@@ -13,23 +33,19 @@
   :init
   :custom
   (org-roam-directory wearry/org-roam-notes-path)
+  (org-roam-dailies-directory wearry/org-thoughts-dir)
+
   (org-roam-graph-viewer "open")
   (org-roam-graph-executable "neato")
   (org-roam-v2-ack t) ;; Acknowledge V2 upgrade
+  :bind
+  (("C-c n f" . org-roam-node-find)
+   ("C-c n r" . org-roam-node-random)
+   ("C-c n i" . org-roam-node-insert)
+   ("C-c n g" . org-roam-graph)
+   ("C-c n l" . org-roam-buffer-toggle))
   :config
   (org-roam-db-autosync-mode)
-  (setq org-roam-capture-templates
-	'(("d" "default" plain "%?"
-	   :if-new (file+head
-		    "${slug}.org"
-		    "#+title: ${title}\n#+created: %U\n#+last-modified: %t\n\n")
-	   :immediate-finish t)
-	  ("n" "bibliography notes" plain "%?"
-	   :if-new (file+head
-		    "bib-notes/notes_on_<${citar-title}>_${citar-date}.org"
-		    "#+title: Notes on <${citar-title}>\n#+created: %U\n#+last-modified: %t\n\n")
-	   :unnarrowed t))
-	time-stamp-start "#\\+last-modified:[ \t]*[<\"]")
   (add-to-list 'display-buffer-alist
 	       '("\\*org-roam\\*"
 		 (display-buffer-in-side-window)
@@ -38,19 +54,28 @@
 		 (slot . 0)
 		 (window-width . 0.3)
 		 (window-parameters . (no-delete-other-windows . t))))
-  :bind
-  (("C-c n f" . org-roam-node-find)
-   ("C-c n r" . org-roam-node-random)
-   (:map org-mode-map
-	 (("C-c n i" . org-roam-node-insert)
-	  ("C-c n o" . org-id-get-create)
-	  ("C-c n g" . org-roam-graph)
-	  ("C-c n t" . org-roam-tag-add)
-	  ("C-c n l" . org-roam-buffer-toggle)))))
-
-(defun wearry/open-citar-bib ()
-  (interactive)
-  (find-file (car wearry/bib-lib-paths)))
+  (setq org-roam-capture-templates
+	'(;; default entries for roam nodes
+	  ("d" "default" plain "\n%?"
+	   :if-new (file+head
+		    "${slug}.org"
+		    "#+title: ${title}\n#+created: %U\n#+last-modified: %t\n")
+	   :immediate-finish t)
+	  ;; daily thoughts/records
+	  ("t" "thought" plain "\n%?"
+	   :if-new (file+head
+		    "thoughts/%<%Y-%m-%d>.org"
+		    "#+title: %<%Y-%m-%d> Record\n#+created: %U\n#+last-modified: %t\n")
+	   :unnarrowed t)
+	  ;; bibliography notes
+	  ("n" "bibliography notes" plain "\n%?"
+	   :if-new (file+head
+		    "bib-notes/notes_on_<${citar-title}>_${citar-date}.org"
+		    "#+title: Notes on <${citar-title}>\n\
+#+created: %U\n\
+#+last-modified: %t\n")
+	   :unnarrowed t))
+	time-stamp-start "#\\+last-modified:[ \t]*[<\"]"))
 
 ;; config org-citar
 (use-package citar
@@ -81,18 +106,6 @@ ${volume} (${year issued date}).\n")
 	 ("C-c b" . wearry/open-citar-bib)
 	 ("C-c f" . citar-add-file-to-library)))
 
-;; (use-package citar-embark
-;;   :ensure t
-;;   :after citar embark
-;;   :no-require
-;;   :config (citar-embark-mode))
-
-;; (use-package org-ref
-;;   :ensure t
-;;   :after org
-;;   :config
-;;   (setq bibtex-dialect 'biblatex))
-
 (use-package oc
   :config
   (require 'oc-biblatex)
@@ -108,9 +121,9 @@ ${volume} (${year issued date}).\n")
   :ensure t
   :after (citar org-roam)
   :config
+  (citar-org-roam-mode)
   (setq citar-org-roam-capture-template-key "n")
-  (setq citar-org-roam-note-title-template "${title}")
-  (citar-org-roam-mode))
+  (setq citar-org-roam-note-title-template "${title}"))
 
 ;; config hugo helper for writting blogs
 (use-package ox-hugo

@@ -2,12 +2,11 @@
 
 (use-package ellama
   :ensure t
-  ;; :bind ("C-c e" . ellama-transient-main-menu)
   :init
   ;; setup key bindings
   (setopt ellama-keymap-prefix "C-c e")
   ;; language you want ellama to translate to
-  (setopt ellama-language "Chinese")
+  (setopt ellama-language "English")
   ;; could be llm-openai for example
   :config
   (require 'llm-ollama)
@@ -25,29 +24,29 @@
   	   :default-chat-non-standard-params '(("num_ctx" . 32768))))
   (setopt ellama-coding-provider
   	  (make-llm-ollama
-  	   :chat-model "qwen3"
+  	   :chat-model "phi4-mini"
   	   :embedding-model "nomic-embed-text"
   	   :default-chat-non-standard-params '(("num_ctx" . 32768))))
   ;; Naming new sessions with llm
   (setopt ellama-naming-provider
   	  (make-llm-ollama
-  	   :chat-model "phi4-mini"
+  	   :chat-model "qwen3.5:4b"
   	   :embedding-model "nomic-embed-text"
   	   :default-chat-non-standard-params '(("stop" . ("\n")))))
   (setopt ellama-naming-scheme 'ellama-generate-name-by-llm)
   ;; Translation llm provider
   (setopt ellama-translation-provider
   	  (make-llm-ollama
-  	   :chat-model "qwen3"
+  	   :chat-model "phi4-mini"
   	   :embedding-model "nomic-embed-text"
   	   :default-chat-non-standard-params '(("num_ctx" . 32768))))
   (setopt ellama-extraction-provider (make-llm-ollama
-  				      :chat-model "phi4-mini"
+  				      :chat-model "qwen3.5:4b"
   				      :embedding-model "nomic-embed-text"
   				      :default-chat-non-standard-params '(("num_ctx" . 32768))))
 
   ;; send last message in chat buffer with C-c C-c
-  ;; (add-hook 'org-ctrl-c-ctrl-c-hook #'ellama-chat-send-last-message)
+  (add-hook 'org-ctrl-c-ctrl-c-hook #'ellama-chat-send-last-message)
 
   ;; customize display buffer behaviour
   ;; see ~(info "(elisp) Buffer Display Action Functions")~

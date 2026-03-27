@@ -11,10 +11,6 @@
     ,(expand-file-name "habit.org" wearry/org-agenda-path))
   "Org-agenda file list")
 
-(defvar wearry/org-journal-dir
-  (expand-file-name "journal/" wearry/org-agenda-path)
-  "Weekly journal directory")
-
 ;; org-mode cores
 (use-package org
   :ensure t
@@ -85,20 +81,9 @@
 				    "habit.org"
 				    wearry/org-agenda-path)
 				  "Habits")
-		   "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>\n:PROPERTIES:\n:STYLE: habit\n\
-:REPEAT_TO_STATE: TODO\n:END:\n"))
-    (add-to-list 'org-capture-templates
-		 `("w" "Weekly Journal" entry
-		   (file ,(expand-file-name
-			   (format-time-string "%Y-W%V.org")
-			   wearry/org-journal-dir))))))
-
-;; (use-package xenops
-;;    :ensure t
-;;    :hook (org-mode . xenops-mode)
-;;    :config
-;;    (setq xenops-reveal-on-entry t
-;;          xenops-math-image-scale-factor 1.414))
+		   "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>\n\
+:PROPERTIES:\n:STYLE: habit\n\
+:REPEAT_TO_STATE: TODO\n:END:\n"))))
 
 (use-package org-fragtog
   :ensure t

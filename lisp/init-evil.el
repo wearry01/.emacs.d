@@ -12,15 +12,14 @@
   (:map evil-normal-state-map
 	("/" . 'consult-line)
 	("'" . 'consult-imenu)
-	("-" . 'delete-other-windows)
 	("`" . 'eshell)
 	("[b" . 'switch-to-prev-buffer)
 	("]b" . 'switch-to-next-buffer)
-	("C-w" . 'kill-current-buffer)
+	("C-w" . 'kill-buffer-and-window)
 	("C-e" . 'find-file)
-	("C-f" . 'jinx-correct-nearest)
+	("C-j" . 'jinx-correct-nearest)
 	("C-b" . 'consult-buffer)
-	("C-l" . 'consult-locate)
+	("C-f" . 'consult-locate)
 	("C-<return>" . 'consult-grep)
 	("SPC n" . 'evil-window-new)
 	("SPC v" . 'evil-window-vnew)
@@ -28,7 +27,6 @@
 	("SPC j" . 'evil-window-down)
 	("SPC k" . 'evil-window-up)
 	("SPC l" . 'evil-window-right)
-	("SPC x" . 'kill-buffer-and-window)
 	("SPC SPC" . 'execute-extended-command)))
 
 (use-package evil-collection
