@@ -40,6 +40,7 @@
   (org-roam-v2-ack t) ;; Acknowledge V2 upgrade
   :bind
   (("C-c n f" . org-roam-node-find)
+   ("C-c n d" . org-roam-dailies-goto-date)
    ("C-c n r" . org-roam-node-random)
    ("C-c n i" . org-roam-node-insert)
    ("C-c n g" . org-roam-graph)
@@ -61,12 +62,6 @@
 		    "${slug}.org"
 		    "#+title: ${title}\n#+created: %U\n#+last-modified: %t\n")
 	   :immediate-finish t)
-	  ;; daily thoughts/records
-	  ("t" "thought" plain "\n%?"
-	   :if-new (file+head
-		    "thoughts/%<%Y-%m-%d>.org"
-		    "#+title: %<%Y-%m-%d> Record\n#+created: %U\n#+last-modified: %t\n")
-	   :unnarrowed t)
 	  ;; bibliography notes
 	  ("n" "bibliography notes" plain "\n%?"
 	   :if-new (file+head
@@ -74,6 +69,14 @@
 		    "#+title: Notes on <${citar-title}>\n\
 #+created: %U\n\
 #+last-modified: %t\n")
+	   :unnarrowed t))
+	time-stamp-start "#\\+last-modified:[ \t]*[<\"]")
+  (setq org-roam-dailies-capture-templates
+	'(;; daily thoughts/records
+	  ("t" "thought" plain "\n%?"
+	   :if-new (file+head
+		    "%<%Y-%m-%d>.org"
+		    "#+title: %<%Y-%m-%d> Record\n#+created: %U\n#+last-modified: %t\n")
 	   :unnarrowed t))
 	time-stamp-start "#\\+last-modified:[ \t]*[<\"]"))
 
