@@ -76,9 +76,9 @@
   ;; org-babel
   (org-babel-do-load-languages
    'org-babel-do-load-languages
-   '((julia . t)
+   '((dot . t)
+     (julia . t)
      (emacs-lisp . t)
-     (mermaid . t)
      (shell . t)))
   ;; org-capture templates
   (with-eval-after-load 'org-capture
@@ -92,12 +92,11 @@
 :PROPERTIES:\n:STYLE: habit\n\
 :REPEAT_TO_STATE: TODO\n:END:\n"))))
 
-(use-package ob-mermaid :ensure t)
 (use-package julia-mode :ensure t)
+(use-package julia-vterm :ensure t)
 (use-package vterm :ensure t)
 (use-package ob-julia-vterm
   :ensure t
-  :after org
   :config
   (add-to-list 'org-babel-do-load-languages '(julia-vterm . t))
   (org-babel-do-load-languages 'org-babel-do-load-languages org-babel-do-load-languages))
