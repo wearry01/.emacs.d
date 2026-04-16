@@ -15,6 +15,7 @@
 (use-package org
   :ensure t
   :defer t
+  :hook (org-babel-after-execute . org-display-inline-images)
   :commands (org-agenda
 	     org-capture
 	     org-store-link)
@@ -37,6 +38,7 @@
 	  ("MEETING" :foreground "forest green" :weight bold)))
 
   (setq org-startup-indented t
+	org-hide-block-startup t
 	org-log-done t
 	org-log-into-drawer "LOGSTATE"
 	org-clock-into-drawer "LOGBOOK"
@@ -93,7 +95,6 @@
 :REPEAT_TO_STATE: TODO\n:END:\n"))))
 
 (use-package julia-mode :ensure t)
-(use-package julia-vterm :ensure t)
 (use-package vterm :ensure t)
 (use-package ob-julia-vterm
   :ensure t
