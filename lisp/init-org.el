@@ -73,6 +73,13 @@
 		   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
     (add-to-list 'org-latex-default-packages-alist '("" "color" nil))
     (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f")))
+  ;; org-babel
+  (org-babel-do-load-languages
+   'org-babel-do-load-languages
+   '((julia . t)
+     (emacs-lisp . t)
+     (mermaid . t)
+     (shell . t)))
   ;; org-capture templates
   (with-eval-after-load 'org-capture
     (add-to-list 'org-capture-templates
@@ -84,6 +91,16 @@
 		   "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>\n\
 :PROPERTIES:\n:STYLE: habit\n\
 :REPEAT_TO_STATE: TODO\n:END:\n"))))
+
+(use-package ob-mermaid :ensure t)
+(use-package julia-mode :ensure t)
+(use-package vterm :ensure t)
+(use-package ob-julia-vterm
+  :ensure t
+  :after org
+  :config
+  (add-to-list 'org-babel-do-load-languages '(julia-vterm . t))
+  (org-babel-do-load-languages 'org-babel-do-load-languages org-babel-do-load-languages))
 
 (use-package org-fragtog
   :ensure t
