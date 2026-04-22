@@ -50,7 +50,7 @@
 	org-habit-following-days 4
 	;; config preview
 	org-preview-latex-default-process 'dvisvgm
-	org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
+	org-format-latex-options (plist-put org-format-latex-options :scale 1.8))
 
   (setq org-agenda-custom-commands
 	'(("c" "Complete Agenda View"
