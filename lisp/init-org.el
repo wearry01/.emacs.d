@@ -106,4 +106,12 @@
   :ensure t
   :hook (org-mode . org-fragtog-mode))
 
+;; Re-render LaTeX previews after save — hooks like delete-trailing-whitespace
+;; can invalidate fragment overlays, leaving raw LaTeX exposed.
+(defun wearry/org-refresh-latex-previews ()
+  "Refresh all LaTeX preview overlays in the current org buffer."
+  (when (and (derived-mode-p 'org-mode) org-fragtog-mode)
+    (ignore-errors (org-latex-preview '(16)))))
+(add-hook 'after-save-hook #'wearry/org-refresh-latex-previews)
+
 (provide 'init-org)

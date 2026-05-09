@@ -2,8 +2,6 @@
 
 ;; Basic Properties
 
-(electric-pair-mode)
-
 (setq mac-option-modifier 'meta
       mac-command-modifier 'super)
 (setq make-backup-files nil)
@@ -97,7 +95,13 @@
   (sp-with-modes 'org-mode
     (sp-local-pair "\\(" "\\)")
     (sp-local-pair "\\[" "\\]")
-    (sp-local-pair "<" nil :actions :rem)))
+    (sp-local-pair "<" nil :actions :rem))
+  ;; Replace show-paren-mode with smartparens' matching in org-mode so brackets
+  ;; inside babel source blocks (e.g. Julia) match correctly.
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (setq-local show-paren-mode nil)
+              (show-smartparens-mode 1))))
 
 (use-package jinx
   :ensure t

@@ -12,6 +12,7 @@
 (require 'init-org-ext)
 (require 'init-tex)
 (require 'init-evil)
+(require 'init-lsp)
 
 ;; Custom Configurations
 
