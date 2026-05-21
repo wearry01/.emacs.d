@@ -1,10 +1,16 @@
 ;;; lisp/init-lsp.el --- LSP Configuration
 
+(use-package flycheck
+  :ensure t
+  :hook (LaTeX-mode . (lambda () (flycheck-select-checker 'tex-chktex)))
+  :init (global-flycheck-mode))
+
 (use-package lsp-mode
   :ensure t
   :commands lsp
   :hook ((LaTeX-mode . lsp-deferred)
          (latex-mode . lsp-deferred)
+	 (julia-mode . lsp-deferred)
          (c-mode . lsp-deferred)
          (c++-mode . lsp-deferred)
          (python-mode . lsp-deferred))
@@ -14,7 +20,8 @@
   (lsp-auto-guess-root t)
   (lsp-keep-workspace-alive nil)
   (lsp-log-io nil)
-  (lsp-restart 'auto-restart))
+  (lsp-restart 'auto-restart)
+  (lsp-diagnostics-provider :flycheck))
 
 (use-package lsp-ui
   :ensure t
