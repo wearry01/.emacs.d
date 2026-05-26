@@ -2,15 +2,15 @@
 
 (use-package flycheck
   :ensure t
-  :hook (LaTeX-mode . (lambda () (flycheck-select-checker 'tex-chktex)))
-  :init (global-flycheck-mode))
+  :hook (LaTeX-mode
+	 . (lambda ()
+	     (flycheck-select-checker 'tex-chktex))))
 
 (use-package lsp-mode
   :ensure t
   :commands lsp
   :hook ((LaTeX-mode . lsp-deferred)
          (latex-mode . lsp-deferred)
-	 (julia-mode . lsp-deferred)
          (c-mode . lsp-deferred)
          (c++-mode . lsp-deferred)
          (python-mode . lsp-deferred))

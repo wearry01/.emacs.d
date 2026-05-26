@@ -15,7 +15,9 @@
 (use-package org
   :ensure t
   :defer t
-  :hook (org-babel-after-execute . org-display-inline-images)
+  :hook
+  (org-mode . org-indent-mode)
+  (org-babel-after-execute . org-display-inline-images)
   :commands (org-agenda
 	     org-capture
 	     org-store-link)
@@ -50,7 +52,7 @@
 	org-habit-following-days 4
 	;; config preview
 	org-preview-latex-default-process 'dvisvgm
-	org-format-latex-options (plist-put org-format-latex-options :scale 1.8))
+	org-format-latex-options (plist-put org-format-latex-options :scale 1.618))
 
   (setq org-agenda-custom-commands
 	'(("c" "Complete Agenda View"
@@ -108,10 +110,10 @@
 
 ;; Re-render LaTeX previews after save — hooks like delete-trailing-whitespace
 ;; can invalidate fragment overlays, leaving raw LaTeX exposed.
-(defun wearry/org-refresh-latex-previews ()
-  "Refresh all LaTeX preview overlays in the current org buffer."
-  (when (and (derived-mode-p 'org-mode) org-fragtog-mode)
-    (ignore-errors (org-latex-preview '(16)))))
-(add-hook 'after-save-hook #'wearry/org-refresh-latex-previews)
+;; (defun wearry/org-refresh-latex-previews ()
+;;   "Refresh all LaTeX preview overlays in the current org buffer."
+;;   (when (and (derived-mode-p 'org-mode) org-fragtog-mode)
+;;     (ignore-errors (org-latex-preview '(16)))))
+;; (add-hook 'after-save-hook #'wearry/org-refresh-latex-previews)
 
 (provide 'init-org)
