@@ -56,7 +56,7 @@
               ("C-n" . 'company-select-next)
               ("C-p" . 'company-select-previous))
   :config
-  (setq company-minimum-prefix-length 5
+  (setq company-minimum-prefix-length 4
         company-idle-delay 0.15
         company-tooltip-align-annotations t))
 
@@ -70,9 +70,10 @@
 
 (use-package orderless
   :ensure t
-  :config
-  (setq completion-styles '(orderless)
-	completion-category-defaults nil))
+  :init
+  (setq completion-styles '(orderless basic)
+	completion-category-defaults nil
+	completion-category-overrides '((file (styles partial-completion)))))
 
 ;; (use-package wgrep
 ;;   :ensure t
@@ -98,18 +99,23 @@
     (sp-local-pair "<" nil :actions :rem))
   ;; Replace show-paren-mode with smartparens' matching in org-mode so brackets
   ;; inside babel source blocks (e.g. Julia) match correctly.
-  (add-hook 'org-mode-hook
-            (lambda ()
-              (setq-local show-paren-mode nil)
-              (show-smartparens-mode 1))))
+  ;; (add-hook 'org-mode-hook
+  ;;           (lambda ()
+  ;;             (setq-local show-paren-mode nil)
+  ;;             (show-smartparens-mode 1)))
+  )
 
-(use-package jinx
+;; (use-package jinx
+;;   :ensure t
+;;   :hook ((org-mode . jinx-mode)
+;; 	 (LaTeX-mode . jinx-mode))
+;;   :config (setq jinx-languages "en_US"))
+
+;; (with-eval-after-load 'jinx
+;;   (add-to-list 'jinx-exclude-regexps '(t "\\cc")))
+
+(use-package magit
   :ensure t
-  :hook ((org-mode . jinx-mode)
-	 (LaTeX-mode . jinx-mode))
-  :config (setq jinx-languages "en_US"))
-
-(with-eval-after-load 'jinx
-  (add-to-list 'jinx-exclude-regexps '(t "\\cc")))
+  :bind ("C-x g" . magit-status))
 
 (provide 'init-general)

@@ -7,12 +7,11 @@
 (require 'init-packages)
 (require 'init-appearance)
 (require 'init-general)
-(require 'init-llm)
-(require 'init-org)
-(require 'init-org-ext)
-(require 'init-tex)
 (require 'init-evil)
 (require 'init-lsp)
+(require 'init-tex)
+(require 'init-org)
+(require 'init-org-ext)
 
 ;; Custom Configurations
 
