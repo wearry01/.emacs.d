@@ -96,24 +96,8 @@
 :PROPERTIES:\n:STYLE: habit\n\
 :REPEAT_TO_STATE: TODO\n:END:\n"))))
 
-(use-package julia-mode :ensure t)
-(use-package vterm :ensure t)
-(use-package ob-julia-vterm
-  :ensure t
-  :config
-  (add-to-list 'org-babel-do-load-languages '(julia-vterm . t))
-  (org-babel-do-load-languages 'org-babel-do-load-languages org-babel-do-load-languages))
-
 (use-package org-fragtog
   :ensure t
   :hook (org-mode . org-fragtog-mode))
-
-;; Re-render LaTeX previews after save — hooks like delete-trailing-whitespace
-;; can invalidate fragment overlays, leaving raw LaTeX exposed.
-;; (defun wearry/org-refresh-latex-previews ()
-;;   "Refresh all LaTeX preview overlays in the current org buffer."
-;;   (when (and (derived-mode-p 'org-mode) org-fragtog-mode)
-;;     (ignore-errors (org-latex-preview '(16)))))
-;; (add-hook 'after-save-hook #'wearry/org-refresh-latex-previews)
 
 (provide 'init-org)
