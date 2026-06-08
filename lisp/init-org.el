@@ -96,8 +96,10 @@
 :PROPERTIES:\n:STYLE: habit\n\
 :REPEAT_TO_STATE: TODO\n:END:\n"))))
 
-(use-package org-fragtog
+(use-package xenops
   :ensure t
-  :hook (org-mode . org-fragtog-mode))
+  :hook (org-mode . xenops-mode)
+  :config
+  (setq xenops-math-image-scale-factor 1.6))
 
 (provide 'init-org)
