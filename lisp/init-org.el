@@ -17,6 +17,7 @@
   :defer t
   :hook
   (org-mode . org-indent-mode)
+  (org-mode . (lambda () (org-latex-preview '(16))))
   (org-babel-after-execute . org-display-inline-images)
   :commands (org-agenda
 	     org-capture
@@ -96,10 +97,9 @@
 :PROPERTIES:\n:STYLE: habit\n\
 :REPEAT_TO_STATE: TODO\n:END:\n"))))
 
-(use-package xenops
+(use-package org-fragtog
   :ensure t
-  :hook (org-mode . xenops-mode)
-  :config
-  (setq xenops-math-image-scale-factor 1.6))
+  :after org
+  :hook (org-mode . org-fragtog-mode))
 
 (provide 'init-org)

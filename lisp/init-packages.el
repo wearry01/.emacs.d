@@ -1,6 +1,7 @@
 ;;; lisp/init-packages.el --- initialize packaging features for emacs
 
 ;; Install use-package
+(setq load-prefer-newer t)
 (require 'package)
 (setq package-archives
       '(("gnu"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
@@ -11,14 +12,10 @@
 ;; Bootstrap `use-package'
 (require 'use-package)
 
-;; Update-packages every 14 days automatically
-(use-package auto-package-update
+;; Recompile stale .elc before loading — prevents stale-byte-code errors
+(use-package auto-compile
   :ensure t
-  :config
-  (setq auto-package-update-interval 14
-        auto-package-update-hide-results nil
-        auto-package-update-delete-old-versions t)
-  (auto-package-update-maybe))
+  :config (auto-compile-on-load-mode 1))
 
 (require 'server)
 (unless (server-running-p)

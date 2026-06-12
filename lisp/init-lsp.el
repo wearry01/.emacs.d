@@ -1,18 +1,14 @@
 ;;; lisp/init-lsp.el --- LSP Configuration
 
-(use-package flycheck
-  :ensure t
-  :hook (LaTeX-mode
-	 . (lambda ()
-	     (flycheck-select-checker 'tex-chktex))))
+(use-package flycheck :ensure t)
 
 (use-package lsp-mode
   :ensure t
+  :after flycheck
   :commands lsp
-  :hook ((LaTeX-mode . lsp-deferred)
-         (latex-mode . lsp-deferred)
-         (c-mode . lsp-deferred)
+  :hook ((c-mode . lsp-deferred)
          (c++-mode . lsp-deferred)
+         (LaTeX-mode . lsp-deferred)
          (python-mode . lsp-deferred))
   :custom
   (lsp-keymap-prefix "s-l")
