@@ -18,3 +18,4 @@ tree-sitter/
 tutorial/
 xenops/
 *.DS_Store
+/eln-cache/

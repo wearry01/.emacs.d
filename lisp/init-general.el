@@ -75,10 +75,6 @@
 	completion-category-defaults nil
 	completion-category-overrides '((file (styles partial-completion)))))
 
-;; (use-package wgrep
-;;   :ensure t
-;;   :config (setq wgrep-auto-save-buffer t))
-
 (use-package consult
   :ensure t
   :config (setq consult-locate-args "mdfind -name"))
@@ -96,23 +92,7 @@
   (sp-with-modes 'org-mode
     (sp-local-pair "\\(" "\\)")
     (sp-local-pair "\\[" "\\]")
-    (sp-local-pair "<" nil :actions :rem))
-  ;; Replace show-paren-mode with smartparens' matching in org-mode so brackets
-  ;; inside babel source blocks (e.g. Julia) match correctly.
-  ;; (add-hook 'org-mode-hook
-  ;;           (lambda ()
-  ;;             (setq-local show-paren-mode nil)
-  ;;             (show-smartparens-mode 1)))
-  )
-
-;; (use-package jinx
-;;   :ensure t
-;;   :hook ((org-mode . jinx-mode)
-;; 	 (LaTeX-mode . jinx-mode))
-;;   :config (setq jinx-languages "en_US"))
-
-;; (with-eval-after-load 'jinx
-;;   (add-to-list 'jinx-exclude-regexps '(t "\\cc")))
+    (sp-local-pair "<" nil :actions :rem)))
 
 (use-package magit
   :ensure t

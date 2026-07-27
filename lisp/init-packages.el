@@ -1,21 +1,18 @@
 ;;; lisp/init-packages.el --- initialize packaging features for emacs
 
+(setq native-comp-jit-compilation t)
+(setq native-comp-async-report-warnings-errors 'silent)
+
 ;; Install use-package
 (setq load-prefer-newer t)
 (require 'package)
 (setq package-archives
-      '(("gnu"    . "https://mirrors.ustc.edu.cn/elpa/gnu/")
-        ("melpa"  . "https://mirrors.ustc.edu.cn/elpa/melpa/")
-        ("nongnu" . "https://mirrors.ustc.edu.cn/elpa/nongnu/")))
+      '(("gnu"    . "https://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+        ("nongnu" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")
+        ("melpa"  . "https://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")))
 
 ;; Bootstrap `use-package'
 (require 'use-package)
-
-;; Recompile stale .elc before loading — prevents stale-byte-code errors
-(use-package auto-compile
-  :ensure t
-  :config (auto-compile-on-load-mode 1))
-
 (require 'server)
 (unless (server-running-p)
   (server-start))

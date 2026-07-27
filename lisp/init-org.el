@@ -7,8 +7,8 @@
 
 (defvar wearry/org-agenda-files
   `("~/Projects/blog/blogs.org"
-    ,(expand-file-name "todo.org" wearry/org-agenda-path)
-    ,(expand-file-name "habit.org" wearry/org-agenda-path))
+    ,(expand-file-name "log.org" wearry/org-agenda-path)
+    ,(expand-file-name "todo.org" wearry/org-agenda-path))
   "Org-agenda file list")
 
 ;; org-mode cores
@@ -25,8 +25,10 @@
   :bind (("C-c l" . org-store-link)
 	 ("C-c c" . org-capture)
 	 ("C-c a" . org-agenda))
-  :init
-  (require 'org-habit)
+  :config
+  (with-eval-after-load 'evil-maps
+    (evil-define-key 'normal org-agenda-mode-map
+      "vr" #'org-agenda-clockreport-mode))
   (setq org-agenda-files wearry/org-agenda-files)
   (setq org-todo-keywords
 	'((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
@@ -46,11 +48,6 @@
 	org-log-into-drawer "LOGSTATE"
 	org-clock-into-drawer "LOGBOOK"
 	org-clock-mode-line-total 'today ;; 可选: today
-	;; config org-habit
-	org-habit-show-habits-only-for-today nil
-	org-habit-graph-column 64
-	org-habit-preceding-days 8
-	org-habit-following-days 4
 	;; config preview
 	org-preview-latex-default-process 'dvisvgm
 	org-format-latex-options (plist-put org-format-latex-options :scale 1.618))
@@ -65,7 +62,7 @@
 	    (tags "BLOG" ((org-agenda-overriding-header "📃 Blog Posts")))
 	    (todo "NEXT" ((org-agenda-overriding-header "🚀 Step Forward")))
 	    (todo "MEETING" ((org-agenda-overriding-header "📌 Appointed Meeting")))))))
-  :config
+
   ;; LaTeX & Beamer
   (require 'ox-beamer)
   (with-eval-after-load 'ox-latex
@@ -77,25 +74,7 @@
 		   ("\\paragraph{%s}" . "\\paragraph*{%s}")
 		   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
     (add-to-list 'org-latex-default-packages-alist '("" "color" nil))
-    (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f")))
-  ;; org-babel
-  (org-babel-do-load-languages
-   'org-babel-do-load-languages
-   '((dot . t)
-     (julia . t)
-     (emacs-lisp . t)
-     (shell . t)))
-  ;; org-capture templates
-  (with-eval-after-load 'org-capture
-    (add-to-list 'org-capture-templates
-		 `("H" "Habit" entry
-		   (file+headline ,(expand-file-name
-				    "habit.org"
-				    wearry/org-agenda-path)
-				  "Habits")
-		   "* TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>\n\
-:PROPERTIES:\n:STYLE: habit\n\
-:REPEAT_TO_STATE: TODO\n:END:\n"))))
+    (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))))
 
 (use-package org-fragtog
   :ensure t

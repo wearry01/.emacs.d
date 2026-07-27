@@ -3,11 +3,12 @@
 (use-package evil
   :ensure t
   :init
-  (setq evil-disable-insert-state-bindings t)
   (setq evil-want-keybinding nil)
+  :config
+  (setq evil-disable-insert-state-bindings t)
   (setq evil-want-C-u-scroll t)
   (setq evil-undo-system 'undo-redo)
-  :config (evil-mode t)
+  (evil-mode t)
   :bind
   (:map evil-normal-state-map
 	("/" . 'consult-line)
@@ -32,7 +33,7 @@
 (use-package evil-collection
   :after evil
   :ensure t
-  :config
+  :init
   (evil-collection-init))
 
 (use-package evil-nerd-commenter
