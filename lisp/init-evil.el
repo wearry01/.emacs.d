@@ -4,10 +4,10 @@
   :ensure t
   :init
   (setq evil-want-keybinding nil)
-  :config
   (setq evil-disable-insert-state-bindings t)
   (setq evil-want-C-u-scroll t)
   (setq evil-undo-system 'undo-redo)
+  :config
   (evil-mode t)
   :bind
   (:map evil-normal-state-map
