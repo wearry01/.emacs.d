@@ -44,6 +44,7 @@
 
   (setq org-startup-indented t
 	org-hide-block-startup t
+	org-hide-drawer-startup t
 	org-log-done t
 	org-log-into-drawer "LOGSTATE"
 	org-clock-into-drawer "LOGBOOK"
