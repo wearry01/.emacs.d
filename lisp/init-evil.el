@@ -1,4 +1,5 @@
-;;; lisp/init-evil.el --- Init Evil Mode
+;;; lisp/init-evil.el  -*- lexical-binding: t; -*-
+;; --- Init Evil Mode
 
 (use-package evil
   :ensure t

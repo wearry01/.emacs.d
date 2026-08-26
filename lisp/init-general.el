@@ -1,4 +1,5 @@
-;;; lisp/init-general.el --- General Setting
+;;; lisp/init-general.el  -*- lexical-binding: t; -*-
+;; --- General Setting
 
 ;; Basic Properties
 

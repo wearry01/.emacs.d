@@ -1,4 +1,5 @@
-;;; lisp/init-tex.el --- Init Tex Environment
+;;; lisp/init-tex.el  -*- lexical-binding: t; -*-
+;; --- Init Tex Environment
 
 (use-package preview-dvisvgm
   :ensure t)

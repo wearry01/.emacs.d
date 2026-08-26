@@ -1,4 +1,5 @@
-;; lisp/init-appearance.org --- Appearance Setting
+;;; lisp/init-appearance.org  -*- lexical-binding: t; -*-
+;; --- Appearance Setting
 
 (global-display-line-numbers-mode)
 (global-hl-line-mode)

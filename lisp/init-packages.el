@@ -1,4 +1,5 @@
-;;; lisp/init-packages.el --- initialize packaging features for emacs
+;;; lisp/init-packages.el  -*- lexical-binding: t; -*-
+;; --- initialize packaging features for emacs
 
 (setq native-comp-jit-compilation t)
 (setq native-comp-async-report-warnings-errors 'silent)

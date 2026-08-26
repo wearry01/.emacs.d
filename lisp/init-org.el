@@ -1,4 +1,5 @@
-;;; lisp/init-org.el --- Org Configuration
+;;; lisp/init-org.el  -*- lexical-binding: t; -*-
+;; --- Org Configuration
 
 ;; org-agenda-files
 (defvar wearry/org-agenda-path
@@ -51,7 +52,7 @@
 	org-clock-mode-line-total 'today ;; 可选: today
 	;; config preview
 	org-preview-latex-default-process 'dvisvgm
-	org-format-latex-options (plist-put org-format-latex-options :scale 1.618))
+	org-format-latex-options (plist-put org-format-latex-options :scale 1.212))
 
   (setq org-agenda-custom-commands
 	'(("c" "Complete Agenda View"

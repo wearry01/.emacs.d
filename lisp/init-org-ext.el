@@ -1,5 +1,7 @@
-;;; lisp/init-org-ext.el --- Org Extensions Configuration
-;;; org-roam, citar, ox-hugo
+;;; lisp/init-org-ext.el  -*- lexical-binding: t; -*-
+;; --- Org Extensions Configuration
+
+;; org-roam, citar, ox-hugo
 
 ;; config local variables for paths
 (defvar wearry/org-roam-notes-path "~/Documents/Zettelkasten/roam-notes/")

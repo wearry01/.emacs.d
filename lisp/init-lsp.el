@@ -1,4 +1,5 @@
-;;; lisp/init-lsp.el --- LSP Configuration
+;;; lisp/init-lsp.el  -*- lexical-binding: t; -*-
+;; --- LSP Configuration
 
 (use-package flycheck :ensure t)
 
