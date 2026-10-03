@@ -18,7 +18,7 @@
   :defer t
   :hook
   (org-mode . org-indent-mode)
-  (org-mode . (lambda () (org-latex-preview '(16))))
+  ;; (org-mode . (lambda () (org-latex-preview '(16))))
   (org-babel-after-execute . org-display-inline-images)
   :commands (org-agenda
 	     org-capture
@@ -52,7 +52,7 @@
 	org-clock-mode-line-total 'today ;; 可选: today
 	;; config preview
 	org-preview-latex-default-process 'dvisvgm
-	org-format-latex-options (plist-put org-format-latex-options :scale 1.212))
+	org-format-latex-options (plist-put org-format-latex-options :scale 1.618))
 
   (setq org-agenda-custom-commands
 	'(("c" "Complete Agenda View"
@@ -78,9 +78,18 @@
     (add-to-list 'org-latex-default-packages-alist '("" "color" nil))
     (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))))
 
-(use-package org-fragtog
+(use-package xenops
   :ensure t
-  :after org
-  :hook (org-mode . org-fragtog-mode))
+  :hook (org-mode . xenops-mode)
+  :init
+  (setq xenops-reveal-on-entry t
+        xenops-math-image-current-scale-factor 1.618)
+  :config
+  ;; Previewing notes must not run arbitrary shell commands.
+  (let ((dvisvgm-config (assq 'dvisvgm xenops-math-latex-process-alist)))
+    (setcdr dvisvgm-config
+            (plist-put (cdr dvisvgm-config) :latex-compiler
+                       '("latex -interaction nonstopmode
+-no-shell-escape -output-format dvi -output-directory %o %f")))))
 
 (provide 'init-org)
