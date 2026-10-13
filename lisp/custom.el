@@ -17,7 +17,12 @@
      ("a4paper, total={6in, 8in}" "geometry" nil nil)
      ("colorlinks=true, citecolor=red, linkcolor=cyan, urlcolor=blue"
       "hyperref" nil nil)))
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(auto-compile cdlatex citar-org-roam company consult doom-modeline
+		  evil-collection evil-nerd-commenter flycheck lsp-ui
+		  magit marginalia orderless org-fragtog ox-hugo
+		  preview-dvisvgm restart-emacs smartparens
+		  timu-macos-theme vertico xenops))
  '(preview-default-option-list '("displaymath" "floats" "graphics" "footnotes" "")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
