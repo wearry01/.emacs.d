@@ -18,7 +18,7 @@
 		 (file ,(expand-file-name
 			 (format-time-string "%Y/%Y-W%V.org")
 			 wearry/org-journal-dir))
-		 "* Week Journal %<%Y-W%V>\n** Time Usage\n%?** Highlights\n** To Do Next Week\n"
+		 "* Week Journal %<%Y-W%V>\n** To do list\n%?** Summary\n"
 		 :jump-to-captured t)))
 
 (defvar wearry/org-thoughts-dir
